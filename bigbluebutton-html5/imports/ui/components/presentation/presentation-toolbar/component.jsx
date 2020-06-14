@@ -233,7 +233,24 @@ class PresentationToolbar extends PureComponent {
     return (
       <div id="presentationToolbarWrapper" className={styles.presentationToolbarWrapper}>
         {this.renderAriaDescs()}
-        {<div />}
+        {/* <div /> */}
+        <div className={styles.presentationZoomControlsBar}>
+          {
+              !isMobileBrowser
+                ? (
+                  <ZoomTool
+                    zoomValue={zoom}
+                    change={this.change}
+                    minBound={HUNDRED_PERCENT}
+                    maxBound={MAX_PERCENT}
+                    step={STEP}
+                    tooltipDistance={tooltipDistance}
+                    isMeteorConnected={isMeteorConnected}
+                  />
+                )
+                : null
+            }
+        </div>
         {
           <div className={styles.presentationSlideControls}>
             <Button
@@ -288,7 +305,7 @@ class PresentationToolbar extends PureComponent {
         }
         {
           <div className={styles.presentationZoomControls}>
-            {
+            {/*
               !isMobileBrowser
                 ? (
                   <ZoomTool
@@ -302,7 +319,7 @@ class PresentationToolbar extends PureComponent {
                   />
                 )
                 : null
-            }
+            */}
             <Button
               role="button"
               aria-describedby={fitToWidth ? 'fitPageDesc' : 'fitWidthDesc'}

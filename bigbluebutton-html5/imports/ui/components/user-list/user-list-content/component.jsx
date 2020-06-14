@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { styles } from './styles';
 import UserParticipantsContainer from './user-participants/container';
 import UserMessages from './user-messages/component';
-import UserNotesContainer from './user-notes/container';
+// import UserNotesContainer from './user-notes/container';
 import UserCaptionsContainer from './user-captions/container';
 import WaitingUsers from './waiting-users/component';
-import UserPolls from './user-polls/component';
+// import UserPolls from './user-polls/component';
 import BreakoutRoomItem from './breakout-room/component';
 
 const propTypes = {
@@ -40,8 +40,8 @@ class UserContent extends PureComponent {
       roving,
       isPublicChat,
       activeChats,
-      pollIsOpen,
-      forcePollOpen,
+      // pollIsOpen,
+      // forcePollOpen,
       hasBreakoutRoom,
       pendingUsers,
       requestUserInformation,
@@ -74,11 +74,11 @@ class UserContent extends PureComponent {
             />
           ) : null
         }
-        <UserNotesContainer
+        {/* <UserNotesContainer
           {...{
             intl,
           }}
-        />
+        /> */}
         {pendingUsers.length > 0 && currentUser.role === ROLE_MODERATOR
           ? (
             <WaitingUsers
@@ -89,13 +89,13 @@ class UserContent extends PureComponent {
             />
           ) : null
         }
-        <UserPolls
+        {/* <UserPolls
           isPresenter={currentUser.presenter}
           {...{
             pollIsOpen,
             forcePollOpen,
           }}
-        />
+        /> */}
         <BreakoutRoomItem isPresenter={currentUser.presenter} hasBreakoutRoom={hasBreakoutRoom} />
         <UserParticipantsContainer
           {...{

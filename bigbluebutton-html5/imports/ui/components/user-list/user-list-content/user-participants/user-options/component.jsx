@@ -310,8 +310,8 @@ class UserOptions extends PureComponent {
           />
         </DropdownTrigger>
         <DropdownContent
-          className={styles.dropdownContent}
-          placement="right top"
+          // className={styles.dropdownContent}
+          placement="bottom right"
         >
           <DropdownList>
             {

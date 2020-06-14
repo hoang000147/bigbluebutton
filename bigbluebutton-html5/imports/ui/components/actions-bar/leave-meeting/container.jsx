@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
 import LeaveMeeting from './component';
 
 const LeaveMeetingContainer = ({ children, ...props }) => (
@@ -10,8 +9,6 @@ const LeaveMeetingContainer = ({ children, ...props }) => (
   </LeaveMeeting>
 );
 
-export default withTracker((props) => {
-  return {
-    isMeteorConnected: Meteor.status().connected,
-  };
-})(LeaveMeetingContainer);
+export default withTracker(() => ({
+  isMeteorConnected: Meteor.status().connected,
+}))(LeaveMeetingContainer);

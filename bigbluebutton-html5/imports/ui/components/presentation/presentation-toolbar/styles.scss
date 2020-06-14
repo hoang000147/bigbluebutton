@@ -26,6 +26,7 @@
 
 .presentationBtn {
   position: relative;
+  background-color:rgb(26,26,26);
 }
 
 .presentationZoomControls {
@@ -37,8 +38,25 @@
   }
 }
 
+.presentationZoomControlsBar {
+  justify-content: flex-start;
+  padding: 0 var(--whiteboard-toolbar-padding) 0 0;
+
+  [dir="rtl"] & {
+    padding: 0 0 0 var(--whiteboard-toolbar-padding);
+  }
+}
+
+
 .presentationSlideControls,
-.presentationZoomControls,
+.presentationZoomControls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 0;
+}
+
+.presentationZoomControlsBar,
 .zoomWrapper {
   display: flex;
   flex-direction: row;
@@ -48,6 +66,7 @@
 
 .presentationSlideControls,
 .presentationZoomControls,
+.presentationZoomControlsBar,
 .zoomWrapper {
   button {
     padding: var(--whiteboard-toolbar-padding);
@@ -58,7 +77,8 @@
   position: relative;
   align-self: center;
   z-index: 1;
-  background-color: var(--color-off-white);
+  //background-color: var(--color-off-white);
+  background-color:rgb(26,26,26);
   border-top: 1px solid var(--color-blue-lightest);
   min-width: fit-content;
   width: 100%;
@@ -81,28 +101,82 @@
     }
 
     option {
-      color: var(--toolbar-button-color);
-      background-color: var(--color-off-white);
+      //color: var(--toolbar-button-color);
+      color: #cccccc;
+      //background-color: var(--color-off-white);
+      background-color: rgb(26,26,26);
     }
   }
 
   button,
   select,
   >div {
-    color: var(--toolbar-button-color);
-    background-color: var(--color-off-white);
-    border-radius: 0;
+    //color: var(--toolbar-button-color);
+    color: #cccccc;
+    //background-color: var(--color-off-white);
+    border-radius: 5px;
     box-shadow: none !important;
     border: 0;
 
     &:focus {
-      background-color: var(--color-off-white);
-      border: 0;
+      //background-color: var(--color-off-white);
+      background-color: transparent !important; 
+      border: 0.5px !important;
+      border-style: solid !important;
+      border-color: #cccccc !important;
+    }
+}
+  
+  button,
+  select {
+    &:hover {
+      //background-color: var(--color-off-white);
+      background-color: transparent !important;
+      border: 0.5px !important;
+      border-style: solid !important;
+      border-color: #cccccc !important;
     }
   }
 
+  select {
+
+    /* make arrow and background */
+
+    background:
+      linear-gradient(45deg, transparent 50%, #cccccc 50%),
+      linear-gradient(135deg, #cccccc 50%, transparent 50%),
+      linear-gradient(to right, #1A1A1A, #1A1A1A);
+    background-position:
+      calc(100% - 21px) calc(1em + 2px),
+      calc(100% - 16px) calc(1em + 2px),
+      100% 0;
+    background-size:
+      5px 5px,
+      5px 5px,
+      2.5em 2.5em;
+    background-repeat: no-repeat;
+
+    /* styling and reset */
+
+    //border: thin solid blue;
+    font: 300 1em/100% "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+
+    /* reset */
+
+    border-radius: 0;
+    margin: 0;      
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+  }  
+
   i {
-    color: var(--toolbar-button-color);
+    //color: var(--toolbar-button-color);
+    color: #cccccc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,6 +186,7 @@
 .zoomWrapper {
   justify-content: space-between;
   background-color: var(--toolbar-button-bg);
+  //background-color: green;
 }
 
 .zoomWrapperNoBorder {
@@ -141,12 +216,13 @@
   margin-right: var(--whiteboard-toolbar-margin);
 }
 
+.presentationZoomControlsBar,
 .presentationZoomControls {
   .fitToWidth,
   .skipSlide,
   .prevSlide {
     i {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
     }
   }
 }

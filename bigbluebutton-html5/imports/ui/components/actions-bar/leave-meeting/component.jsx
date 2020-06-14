@@ -2,12 +2,9 @@ import React, { PureComponent } from 'react';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import SettingsMenuContainer from '/imports/ui/components/settings/container';
 import Button from '/imports/ui/components/button/component';
 import cx from 'classnames';
-import Modal from '/imports/ui/components/modal/simple/component';
 import { withModalMounter } from '../../modal/service';
-import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import { makeCall } from '/imports/ui/services/api';
 
 import { styles } from '../styles';
@@ -48,7 +45,7 @@ class LeaveMeeting extends PureComponent {
     // it is checked in meeting-ended component
     Session.set('codeError', this.LOGOUT_CODE);
     // mountModal(<MeetingEndedComponent code={LOGOUT_CODE} />);
-  } 
+  }
 
   renderLeaveMeeting() {
     const {
@@ -62,9 +59,9 @@ class LeaveMeeting extends PureComponent {
     const logoutOption = (
       <Button
         className={cx(styles.button)}
-        icon={'logout'}
+        icon="logout"
         label={intl.formatMessage(intlMessages.leaveMeetingLabel)}
-        color={'danger'}
+        color="danger"
         description={intl.formatMessage(intlMessages.leaveMeetingDesc)}
         size="lg"
         circle
@@ -90,7 +87,7 @@ class LeaveMeeting extends PureComponent {
     return (
       <span>
         { this.renderLeaveMeeting() }
-      </span> 
+      </span>
     );
   }
 }
@@ -98,5 +95,3 @@ class LeaveMeeting extends PureComponent {
 LeaveMeeting.propTypes = propTypes;
 
 export default withModalMounter(injectIntl(LeaveMeeting));
-
-

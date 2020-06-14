@@ -16,7 +16,7 @@ const intlMessages = defineMessages({
   chatLabel: {
     id: 'app.chat.label',
     description: 'Aria-label for Chat Section',
-  },
+  }, 
   noteLabel: {
     id: 'app.note.label',
     description: 'Aria-label for Note Section',
@@ -25,9 +25,13 @@ const intlMessages = defineMessages({
     id: 'app.captions.label',
     description: 'Aria-label for Captions Section',
   },
-  userListLabel: {
+  /*userListLabel: {
     id: 'app.userList.label',
     description: 'Aria-label for Userlist Nav',
+  },*/ 
+  userchatLabel: {
+    id: 'app.userChat.label',
+    description: 'Aria-label for User Chat Section',
   },
 });
 
@@ -40,20 +44,23 @@ const propTypes = {
 };
 
 
-const DEFAULT_USERLIST_WIDTH = 300;
-const DEFAULT_PANEL_WIDTH = 270;
+const DEFAULT_PANEL_WIDTH = 300;
+
+// Variables for resizing user-list.
+/*const USERLIST_MIN_WIDTH_PX = 150;
+const USERLIST_MAX_WIDTH_PX = 240;*/ 
 
 // Variables for resizing chat.
 const CHAT_MIN_WIDTH = 150;
-const CHAT_MAX_WIDTH = 350;
+const CHAT_MAX_WIDTH = 350; 
 
 // Variables for resizing user-chat.
-const USERLIST_MIN_WIDTH = 150;
-const USERLIST_MAX_WIDTH = 350;
+const USERCHAT_MIN_WIDTH = 150;
+const USERCHAT_MAX_WIDTH = 350;
 
 // Variables for resizing poll.
-const POLL_MIN_WIDTH = 150;
-const POLL_MAX_WIDTH = 350;
+const POLL_MIN_WIDTH = 320;
+const POLL_MAX_WIDTH = 400;
 
 // Variables for resizing shared notes.
 const NOTE_MIN_WIDTH = DEFAULT_PANEL_WIDTH;
@@ -73,8 +80,9 @@ class PanelManager extends PureComponent {
   constructor() {
     super();
 
-    this.userlistKey = _.uniqueId('userlist-');
-    this.chatKey = _.uniqueId('chat-');
+    //this.userlistKey = _.uniqueId('userlist-');
+    this.chatKey = _.uniqueId('chat-'); 
+    this.userchatKey = _.uniqueId('userlist-');
     this.breakoutroomKey = _.uniqueId('breakoutroom-');
     this.pollKey = _.uniqueId('poll-');
     this.noteKey = _.uniqueId('note-');
@@ -82,8 +90,9 @@ class PanelManager extends PureComponent {
     this.waitingUsers = _.uniqueId('waitingUsers-');
 
     this.state = {
-      chatWidth: DEFAULT_USERLIST_WIDTH,
-      userlistWidth: DEFAULT_USERLIST_WIDTH,
+      chatWidth: DEFAULT_PANEL_WIDTH,
+      //userlistWidth: 180, 
+      userchatWidth: DEFAULT_PANEL_WIDTH,
       pollWidth: DEFAULT_PANEL_WIDTH,
       noteWidth: DEFAULT_PANEL_WIDTH,
       captionsWidth: DEFAULT_PANEL_WIDTH,
@@ -100,7 +109,7 @@ class PanelManager extends PureComponent {
     }
   }
 
-  renderUserList() {
+  renderUserChat() {
     const {
       intl,
       enableResize,
@@ -111,20 +120,20 @@ class PanelManager extends PureComponent {
     const ariaHidden = shouldAriaHide() && openPanel !== 'userlist';
 
     return (
-      <section
-        className={styles.userList}
-        aria-label={intl.formatMessage(intlMessages.userListLabel)}
-        key={enableResize ? null : this.userlistKey}
+      <div
+        className={styles.userchat}
+        aria-label={intl.formatMessage(intlMessages.userchatLabel)}
+        key={enableResize ? null : this.userchatKey}
         aria-hidden={ariaHidden}
       >
         <UserListContainer />
         <ChatContainer />
-      </section>
+      </div>
     );
   }
 
-  renderUserListResizable() {
-    const { userlistWidth } = this.state;
+  renderUserChatResizable() {
+    const { userchatWidth } = this.state;
     const { isRTL } = this.props;
 
     const resizableEnableOptions = {
@@ -140,21 +149,21 @@ class PanelManager extends PureComponent {
 
     return (
       <Resizable
-        minWidth={USERLIST_MIN_WIDTH}
-        maxWidth={USERLIST_MAX_WIDTH}
+        minWidth={USERCHAT_MIN_WIDTH}
+        maxWidth={USERCHAT_MAX_WIDTH}
         style={{ order: '3' }}
         ref={(node) => { this.resizableUserList = node; }}
         enable={resizableEnableOptions}
-        key={this.userlistKey}
-        size={{ width: userlistWidth }}
+        key={this.userchatKey}
+        size={{ width: userchatWidth }}
         onResize={dispatchResizeEvent}
         onResizeStop={(e, direction, ref, d) => {
           this.setState({
-            userlistWidth: userlistWidth + d.width,
+            userchatWidth: userchatWidth + d.width,
           });
         }}
       >
-        {this.renderUserList()}
+        {this.renderUserChat()}
       </Resizable>
     );
   }
@@ -180,9 +189,9 @@ class PanelManager extends PureComponent {
 
     const resizableEnableOptions = {
       top: false,
-      right: !!isRTL,
+      right: !isRTL,
       bottom: false,
-      left: !isRTL,
+      left: !!isRTL,
       topRight: false,
       bottomRight: false,
       bottomLeft: false,
@@ -230,9 +239,9 @@ class PanelManager extends PureComponent {
 
     const resizableEnableOptions = {
       top: false,
-      right: !!isRTL,
+      right: !isRTL,
       bottom: false,
-      left: !isRTL,
+      left: !!isRTL,
       topRight: false,
       bottomRight: false,
       bottomLeft: false,
@@ -280,9 +289,9 @@ class PanelManager extends PureComponent {
 
     const resizableEnableOptions = {
       top: false,
-      right: !!isRTL,
+      right: !isRTL,
       bottom: false,
-      left: !isRTL,
+      left: !!isRTL,
       topRight: false,
       bottomRight: false,
       bottomLeft: false,
@@ -332,9 +341,9 @@ class PanelManager extends PureComponent {
 
     const resizableEnableOptions = {
       top: false,
-      right: !!isRTL,
+      right: !isRTL,
       bottom: false,
-      left: !isRTL,
+      left: !!isRTL,
       topRight: false,
       bottomRight: false,
       bottomLeft: false,
@@ -368,28 +377,28 @@ class PanelManager extends PureComponent {
     const panels = [];
     if (enableResize) {
       panels.push(
-        this.renderUserListResizable(),
+        this.renderUserChatResizable(),
       );
     } else {
-      panels.push(this.renderUserList());
-    }
+      panels.push(this.renderUserChat());
+    } 
 
-    /* if (openPanel === '') return null;
+    /*if (openPanel === '') return null;
     const panels = [];
     if (enableResize) {
       panels.push(
         this.renderUserListResizable(),
       );
     } else {
-      panels.push(this.renderUserList()); */
-
-    /* if (openPanel === 'chat') {
+      panels.push(this.renderUserList());*/
+    
+    /*if (openPanel === 'chat') {
       if (enableResize) {
         panels.push(this.renderChatResizable());
       } else {
         panels.push(this.renderChat());
       }
-    } */
+    }*/
 
     if (openPanel === 'note') {
       if (enableResize) {
@@ -433,8 +442,8 @@ class PanelManager extends PureComponent {
 
     return panels;
   }
-}
+};
 
 export default injectIntl(PanelManager);
 
-PanelManager.propTypes = propTypes;
+PanelManager.propTypes = propTypes; 

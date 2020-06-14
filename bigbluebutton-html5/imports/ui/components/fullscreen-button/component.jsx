@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  dark: false,
+  dark: true,
   bottom: false,
   isIphone: false,
   isFullscreen: false,

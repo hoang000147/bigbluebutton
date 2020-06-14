@@ -18,6 +18,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: rgb(26,26,26);
 }
 
 .navbar {
@@ -103,14 +104,14 @@
   }
 }
 
-.userList {
+/* .userList {
   @extend %full-page;
   @extend %text-elipsis;
   @include highContrastOutline();
   outline-style: solid;
   z-index: 2;
   overflow: visible;
-  order: 1;
+  order: 2; //3
 
   @include mq($small-only) {
     top: var(--navbar-height);
@@ -118,7 +119,7 @@
 
   @include mq($medium-up) {
     flex: 0 15vw;
-    order: 1;
+    order: 3;
     height: 100vh;
   }
 
@@ -127,14 +128,33 @@
     height: 100vh;
   }
 }
-
-.userlistPad {
-  background-color: var(--color-off-white);
-  width: var(--userlist-handle-width);
-}
+*/
 
 .compact {
   flex-basis: 4.6rem;
+}
+
+.userList {
+  @extend %full-page;
+  @include highContrastOutline();
+  outline-style: solid;
+  order: 2;
+  height: 100%;
+  @include mq($small-only) {
+    z-index: 3;
+    height: auto;
+    top: var(--navbar-height);
+    overflow: visible;
+  }
+
+  @include mq($medium-up) {
+    flex: 0 25vw;
+    order: 1;
+  }
+
+  @include mq($xlarge-up) {
+    flex-basis: 20vw;
+  }
 }
 
 .poll,
@@ -224,3 +244,4 @@
   position: relative;
   order: 3;
 }
+
