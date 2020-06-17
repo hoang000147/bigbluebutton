@@ -606,7 +606,7 @@ class UserDropdown extends PureComponent {
           {<UserIcons
             {...{
               user,
-              amIModerator: currentUser.role === ROLE_MODERATOR,
+              amIModerator: currentUser.role === ROLE_MODERATOR
             }}
           />}
         </div>
@@ -636,7 +636,7 @@ class UserDropdown extends PureComponent {
             [dropdownDirection]: `${dropdownOffset}px`,
           }}
           className={styles.dropdownContent}
-          placement="bottom right"
+          placement={`left ${dropdownDirection}`} 
         >
           <DropdownList
             ref={(ref) => { this.list = ref; }}

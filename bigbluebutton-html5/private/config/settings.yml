@@ -32,8 +32,8 @@ public:
         chatPushAlerts: false
         userJoinAudioAlerts: false
         userJoinPushAlerts: false
-        fallbackLocale: en
-        overrideLocale: null
+        fallbackLocale: vi_VN
+        overrideLocale: vi_VN
       audio:
         inputDeviceId: undefined
         outputDeviceId: undefined

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import Icon from '/imports/ui/components/icon/component';
 import NoteService from '/imports/ui/components/note/service';
 import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
+import { withModalMounter } from '/imports/ui/components/modal/service';
 
 const propTypes = {
   intl: PropTypes.shape({
@@ -114,4 +115,4 @@ class UserNotes extends Component {
 
 UserNotes.propTypes = propTypes;
 
-export default UserNotes;
+export default withModalMounter(injectIntl(UserNotes));

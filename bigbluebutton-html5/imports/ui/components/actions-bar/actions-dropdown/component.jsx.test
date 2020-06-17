@@ -13,8 +13,8 @@ import { withModalMounter } from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
-import UserNotesContainer from '../user-notes/container';
 import cx from 'classnames';
+import UserNotesContainer from '../user-notes/container';
 import { styles } from '../styles';
 
 const propTypes = {
@@ -26,8 +26,6 @@ const propTypes = {
   handleTakePresenter: PropTypes.func.isRequired,
   allowExternalVideo: PropTypes.bool.isRequired,
   stopExternalVideoShare: PropTypes.func.isRequired,
-  revs: PropTypes.number.isRequired,
-  isPanelOpened: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -68,9 +66,9 @@ const intlMessages = defineMessages({
     description: 'shared notes menu toggle button label',
   },
   sharedNotesDesc: {
-    id: 'app.actionsBar.actionsDropdown.sharedNotesDesc',              
+    id: 'app.actionsBar.actionsDropdown.sharedNotesDesc',
     description: 'shared notes menu toggle button description',
-  }, 
+  },
   takePresenter: {
     id: 'app.actionsBar.actionsDropdown.takePresenter',
     description: 'Label for take presenter role option',
@@ -120,8 +118,6 @@ class ActionsDropdown extends PureComponent {
       isSharingVideo,
       isPollingEnabled,
       stopExternalVideoShare,
-      revs,
-      isPanelOpened,
     } = this.props;
 
     const {
@@ -142,7 +138,6 @@ class ActionsDropdown extends PureComponent {
     return _.compact([
       (<DropdownListItem
         icon="copy"
-        data-test="notes"
         label={formatMessage(sharedNotesLabel)}
         description={formatMessage(sharedNotesDesc)}
         key={this.noteId}
@@ -241,8 +236,8 @@ class ActionsDropdown extends PureComponent {
   }
 
   handleSharedNotesClick() {
-    const { mountModel } = this.props;
-    mountModel(<UserNotesContainer 
+    const { mountModal } = this.props;
+    mountModal(<UserNotesContainer
       {...{
         intl,
       }}

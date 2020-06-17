@@ -116,6 +116,7 @@ export default class Button extends BaseButton {
       label,
       'aria-label': ariaLabel,
       'aria-expanded': ariaExpanded,
+      tooltipDistance,
       tooltipLabel,
     } = this.props;
 
@@ -125,6 +126,7 @@ export default class Button extends BaseButton {
       const buttonLabel = label || ariaLabel;
       return (
         <Tooltip
+          tooltipDistance={tooltipDistance}
           title={tooltipLabel || buttonLabel}
         >
           {this[renderFuncName]()}
@@ -151,6 +153,7 @@ export default class Button extends BaseButton {
     delete remainingProps.circle;
     delete remainingProps.block;
     delete remainingProps.hideLabel;
+    delete remainingProps.tooltipDistance;
     delete remainingProps.tooltipLabel;
 
     /* TODO: We can change this and make the button with flexbox to avoid html
@@ -184,6 +187,7 @@ export default class Button extends BaseButton {
     delete remainingProps.circle;
     delete remainingProps.block;
     delete remainingProps.hideLabel;
+    delete remainingProps.tooltipDistance;
     delete remainingProps.tooltipLabel;
 
     return (

@@ -99,6 +99,7 @@ class ActionsDropdown extends PureComponent {
     this.handlePresentationClick = this.handlePresentationClick.bind(this);
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
+    this.handleSharedNotesClick = this.handleSharedNotesClick.bind(this);
   }
 
   componentWillUpdate(nextProps) {
@@ -236,8 +237,8 @@ class ActionsDropdown extends PureComponent {
   }
 
   handleSharedNotesClick() {
-    const { mountModel } = this.props;
-    mountModel(<UserNotesContainer
+    const { mountModal } = this.props;
+    mountModal(<UserNotesContainer
       {...{
         intl,
       }}
