@@ -11,6 +11,8 @@ import Button from '../button/component';
 import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
 import SettingsDropdownContainer from './settings-dropdown/container';
+// import UserMessages from '/imports/ui/components/user-list/user-list-content/user-messages/component';
+import ChatListItemContainer from '/imports/ui/components/user-list/chat-list-item/container';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -24,6 +26,10 @@ const intlMessages = defineMessages({
   newMessages: {
     id: 'app.navBar.toggleUserList.newMessages',
     description: 'label for toggleUserList btn when showing red notification',
+  },
+  toggleChatLabel: {
+    id: 'app.chat.titlePublic',
+    description: 'Chat toggle button label',
   },
 });
 
@@ -40,6 +46,11 @@ const defaultProps = {
 };
 
 class NavBar extends PureComponent {
+  /* constructor(props) {
+    super(props);
+
+    this.handleToggleChat = this.handleToggleChat.bind(this);
+  } */
 
   static handleToggleUserList() {
     Session.set(
@@ -67,6 +78,19 @@ class NavBar extends PureComponent {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
+  /* handleToggleChat () {
+    const { mountModal, isPublicChat, activeChats, compact, intl, roving } = this.props;
+    mountModal(<UserMessage
+      {...{
+        isPublicChat,
+        activeChats,
+        compact,
+        intl,
+        roving,
+      }}
+    />);
+  } */
 
   render() {
     const {
@@ -115,6 +139,17 @@ class NavBar extends PureComponent {
               className={cx(toggleBtnClasses)}
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
+            />
+            <Button
+              data-test="chatToggleButton"
+              /* onClick={() => this.handleToggleChat()} */
+              onClick={() => handleClickToggleChat(chat.userId)}
+              ghost
+              circle
+              hideLabel
+              label={intl.formatMessage(intlMessages.toggleChatLabel)}
+              icon="chat"
+              className={cx(styles.button)}
             />
           </div>
         </div>

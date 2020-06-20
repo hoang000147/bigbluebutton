@@ -53,6 +53,7 @@ export default withTracker(() => {
   const isExpanded = openPanel !== '';
   const amIModerator = currentUser.role === ROLE_MODERATOR;
   const hasUnreadMessages = checkUnreadMessages();
+  const activeChatId = Session.get('idChatOpen');
 
   return {
     amIModerator,
@@ -63,5 +64,6 @@ export default withTracker(() => {
     meetingId,
     presentationTitle: meetingTitle,
     hasUnreadMessages,
+    activeChatId,
   };
 })(NavBarContainer);

@@ -12,7 +12,6 @@ import RecordingIndicator from './recording-indicator/container';
 import TalkingIndicatorContainer from '/imports/ui/components/nav-bar/talking-indicator/container';
 import SettingsDropdownContainer from './settings-dropdown/container';
 
-
 const intlMessages = defineMessages({
   toggleUserListLabel: {
     id: 'app.navBar.userListToggleBtnLabel',
@@ -25,6 +24,10 @@ const intlMessages = defineMessages({
   newMessages: {
     id: 'app.navBar.toggleUserList.newMessages',
     description: 'label for toggleUserList btn when showing red notification',
+  },
+  toggleChatLabel: {
+    id: 'app.chat.titlePublic',
+    description: 'Chat toggle button label',
   },
 });
 
@@ -41,6 +44,7 @@ const defaultProps = {
 };
 
 class NavBar extends PureComponent {
+
   static handleToggleUserList() {
     Session.set(
       'openPanel',
@@ -86,7 +90,7 @@ class NavBar extends PureComponent {
 
     let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
-
+    
     return (
       <div className={styles.navbar}>
         <div className={styles.top}>
@@ -116,6 +120,16 @@ class NavBar extends PureComponent {
               aria-expanded={isExpanded}
               accessKey={TOGGLE_USERLIST_AK}
             />
+            {/* <Button
+              data-test="chatToggleButton"
+              // onClick={() => handleClickToggleChat(chat.userId)}
+              ghost
+              circle
+              hideLabel
+              label={intl.formatMessage(intlMessages.toggleChatLabel)}
+              icon="chat"
+              className={cx(styles.button)}
+            /> */}
           </div>
         </div>
         <div className={styles.bottom}>
