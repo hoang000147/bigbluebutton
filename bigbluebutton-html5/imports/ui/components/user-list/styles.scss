@@ -45,10 +45,11 @@
 %list-item {
   display: flex;
   flex-flow: row;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  // border-top-left-radius: 5px;
+  // border-bottom-left-radius: 5px;
+  // border-top-right-radius: 0;
+  // border-bottom-right-radius: 0;
+  border-radius: 5px;
   cursor: pointer;
 
   [dir="rtl"] & {
@@ -86,6 +87,8 @@
   background-color: var(--user-list-bg);
   color: var(--user-list-text);
   height: 100%;
+  overflow-y: auto;
+  padding-right: 5px; 
 }
 
 .lists {

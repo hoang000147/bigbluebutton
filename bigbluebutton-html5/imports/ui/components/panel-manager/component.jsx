@@ -40,7 +40,7 @@ const propTypes = {
 };
 
 
-const DEFAULT_USERLIST_WIDTH = 300;
+const DEFAULT_USERLIST_WIDTH = 250;
 const DEFAULT_PANEL_WIDTH = 270;
 
 // Variables for resizing chat.

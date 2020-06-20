@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styles } from './styles';
 import UserParticipantsContainer from './user-participants/container';
 import UserMessages from './user-messages/component';
-import UserNotesContainer from './user-notes/container';
+// import UserNotesContainer from './user-notes/container';
 import UserCaptionsContainer from './user-captions/container';
 import WaitingUsers from './waiting-users/component';
 // import UserPolls from './user-polls/component';
@@ -74,11 +74,11 @@ class UserContent extends PureComponent {
             />
           ) : null
         }
-        <UserNotesContainer
+        {/* <UserNotesContainer
           {...{
             intl,
           }}
-        />
+        /> */}
         {pendingUsers.length > 0 && currentUser.role === ROLE_MODERATOR
           ? (
             <WaitingUsers

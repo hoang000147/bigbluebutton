@@ -166,8 +166,8 @@ public:
     typingIndicator:
       enabled: true
   note:
-    enabled: false
-    url: ETHERPAD_HOST
+    enabled: true
+    url: https://hadtechbbb.tk/pad
     config:
       showLineNumbers: false
       showChat: false
@@ -326,7 +326,7 @@ private:
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
   etherpad:
-    apikey: ETHERPAD_APIKEY
+    apikey: 3b0a731020f4fc7e36c058c51f48d4a95d1c2357892a13cf43d32fe11b31746e
     version: 1.2.13
     host: 127.0.0.1
     port: 9001

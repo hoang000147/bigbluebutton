@@ -18,11 +18,13 @@ const propTypes = {
 
 const intlMessages = defineMessages({
   leaveMeetingLabel: {
-    id: 'app.actionsBar.leaveMeetingLabel',
+    // id: 'app.actionsBar.leaveMeetingLabel',
+    id: 'app.navBar.settingsDropdown.leaveSessionLabel',
     description: 'Leave Meeting option label',
   },
   leaveMeetingDesc: {
-    id: 'app.actionsBar.leaveMeetingDesc',
+    // id: 'app.actionsBar.leaveMeetingDesc',
+    id: 'app.navBar.settingsDropdown.leaveSessionDesc',
     description: 'Describes leave meeting option',
   },
 });

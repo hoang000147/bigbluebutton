@@ -44,7 +44,6 @@ const defaultProps = {
 };
 
 class NavBar extends PureComponent {
-
   static handleToggleUserList() {
     Session.set(
       'openPanel',
@@ -90,7 +89,7 @@ class NavBar extends PureComponent {
 
     let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
-    
+
     return (
       <div className={styles.navbar}>
         <div className={styles.top}>

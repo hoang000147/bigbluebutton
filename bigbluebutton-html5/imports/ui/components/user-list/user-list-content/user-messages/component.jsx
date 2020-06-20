@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import { defineMessages } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import cx from 'classnames';
 import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
 import { findDOMNode } from 'react-dom';
 import ChatListItemContainer from '../../chat-list-item/container';
+import { withModalMounter } from '/imports/ui/components/modal/service';
 
 const propTypes = {
   activeChats: PropTypes.arrayOf(String).isRequired,

@@ -14,7 +14,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
 import cx from 'classnames';
-import UserNotesContainer from '../user-notes/container';
+import NoteService from '/imports/ui/components/note/service';
 import { styles } from '../styles';
 
 const propTypes = {
@@ -62,7 +62,7 @@ const intlMessages = defineMessages({
     description: 'poll menu toggle button description',
   },
   sharedNotesLabel: {
-    id: 'app.userList.notesTitle',
+    id: 'app.note.title',
     description: 'shared notes menu toggle button label',
   },
   sharedNotesDesc: {
@@ -99,7 +99,6 @@ class ActionsDropdown extends PureComponent {
     this.handlePresentationClick = this.handlePresentationClick.bind(this);
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
-    this.handleSharedNotesClick = this.handleSharedNotesClick.bind(this);
   }
 
   componentWillUpdate(nextProps) {
@@ -142,7 +141,7 @@ class ActionsDropdown extends PureComponent {
         label={formatMessage(sharedNotesLabel)}
         description={formatMessage(sharedNotesDesc)}
         key={this.noteId}
-        onClick={this.handleSharedNotesClick}
+        onClick={NoteService.toggleNotePanel}
       />),
       (amIPresenter && isPollingEnabled
         ? (
@@ -234,15 +233,6 @@ class ActionsDropdown extends PureComponent {
 
     presentationItemElements.push(<DropdownListSeparator key={_.uniqueId('list-separator-')} />);
     return presentationItemElements;
-  }
-
-  handleSharedNotesClick() {
-    const { mountModal } = this.props;
-    mountModal(<UserNotesContainer
-      {...{
-        intl,
-      }}
-    />);
   }
 
   handleExternalVideoClick() {
