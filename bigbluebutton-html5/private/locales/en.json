@@ -186,7 +186,7 @@
     "app.presentationUploder.conversion.officeDocConversionInvalid": "Failed to process office document. Please upload a PDF instead.",
     "app.presentationUploder.conversion.officeDocConversionFailed": "Failed to process office document. Please upload a PDF instead.",
     "app.presentationUploder.conversion.pdfHasBigPage": "We could not convert the PDF file, please try optimizing it",
-    "app.presentationUploder.conversion.timeout": "Ops, the conversion took too long",
+    "app.presentationUploder.conversion.timeout": "Oops, the conversion took too long",
     "app.presentationUploder.conversion.pageCountFailed": "Failed to determine the number of pages.",
     "app.presentationUploder.isDownloadableLabel": "Do not allow presentation to be downloaded",
     "app.presentationUploder.isNotDownloadableLabel": "Allow presentation to be downloaded",
