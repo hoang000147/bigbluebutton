@@ -49,6 +49,7 @@ class ActionsBar extends PureComponent {
     return (
       <div className={styles.actionsbar}>
         <div className={styles.left}>
+          <AudioControlsContainer />
           <ActionsDropdown {...{
             amIPresenter,
             amIModerator,
@@ -72,7 +73,7 @@ class ActionsBar extends PureComponent {
           }
         </div>
         <div className={cx(actionBarClasses)}>
-          <AudioControlsContainer />
+          {/* <AudioControlsContainer /> */}
           {enableVideo
             ? (
               <JoinVideoOptionsContainer />
@@ -89,7 +90,6 @@ class ActionsBar extends PureComponent {
             screenshareDataSavingSetting,
           }}
           />
-          <LeaveMeetingContainer />
         </div>
         <div className={styles.right}>
           {isLayoutSwapped
@@ -101,6 +101,7 @@ class ActionsBar extends PureComponent {
             )
             : null
           }
+          <LeaveMeetingContainer />
         </div>
       </div>
     );
