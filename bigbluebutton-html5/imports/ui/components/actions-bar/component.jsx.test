@@ -37,13 +37,13 @@ const intlMessages = defineMessages({
 });
 
 const propTypes = {
+  presentationTitle: PropTypes.string,
   hasUnreadMessages: PropTypes.bool,
   shortcuts: PropTypes.string,
-  isMeteorConnected: PropTypes.bool.isRequired,
-  mountModal: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
+  presentationTitle: 'Default Room Title',
   hasUnreadMessages: false,
   shortcuts: '',
 };
@@ -107,7 +107,6 @@ class ActionsBar extends PureComponent {
       mountModal,
       isExpanded,
       shortcuts: TOGGLE_USERLIST_AK,
-      hasUnreadMessages,
    } = this.props;
 
     const actionBarClasses = {};
@@ -144,7 +143,6 @@ class ActionsBar extends PureComponent {
             label={intl.formatMessage(intlMessages.toggleUserListLabel)}
             aria-label={ariaLabel}
             icon="user"
-            size="lg"
             className={cx(toggleBtnClasses)}
             aria-expanded={isExpanded}
             accessKey={TOGGLE_USERLIST_AK}

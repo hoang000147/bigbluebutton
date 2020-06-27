@@ -269,12 +269,14 @@ class ActionsDropdown extends PureComponent {
       <Dropdown ref={(ref) => { this._dropdown = ref; }}>
         <DropdownTrigger tabIndex={0} accessKey={OPEN_ACTIONS_AK}>
           <Button
+            className={cx(styles.btn)}
             hideLabel
             aria-label={intl.formatMessage(intlMessages.actionsLabel)}
             label={intl.formatMessage(intlMessages.actionsLabel)}
             icon="plus"
             color="default"
             size="lg"
+            ghost
             circle
             onClick={() => null}
           />
