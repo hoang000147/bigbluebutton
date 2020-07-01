@@ -9,9 +9,17 @@ import getFromUserSettings from '/imports/ui/services/users-settings';
 import userListService from '../user-list/service';
 import Service from './service';
 import NavBar from './component';
+import browser from 'browser-detect';
+import FullscreenService from '../fullscreen-button/service';
 
 const PUBLIC_CONFIG = Meteor.settings.public;
 const ROLE_MODERATOR = PUBLIC_CONFIG.user.role_moderator;
+
+const BROWSER_RESULTS = browser();
+const isSafari = BROWSER_RESULTS.name === 'safari';
+const isIphone = navigator.userAgent.match(/iPhone/i);
+const noIOSFullscreen = (isSafari && BROWSER_RESULTS.versionNumber < 12) || isIphone;
+
 const NavBarContainer = ({ children, ...props }) => (
   <NavBar {...props}>
     {children}
@@ -20,6 +28,8 @@ const NavBarContainer = ({ children, ...props }) => (
 
 export default withTracker(() => {
   const CLIENT_TITLE = getFromUserSettings('bbb_client_title', PUBLIC_CONFIG.app.clientTitle);
+
+  const handleToggleFullscreen = () => FullscreenService.toggleFullScreen();
 
   let meetingTitle;
   const meetingId = Auth.meetingID;
@@ -65,5 +75,8 @@ export default withTracker(() => {
     presentationTitle: meetingTitle,
     hasUnreadMessages,
     activeChatId,
+    handleToggleFullscreen,
+    noIOSFullscreen,
+    isMeteorConnected: Meteor.status().connected,
   };
 })(NavBarContainer);

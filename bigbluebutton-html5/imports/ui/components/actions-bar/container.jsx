@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { injectIntl } from 'react-intl';
@@ -26,10 +27,16 @@ import MediaService, {
   shouldEnableSwapLayout,
 } from '../media/service';
 
+const propTypes = {
+  activeChats: PropTypes.arrayOf(String).isRequired,
+  isPublicChat: PropTypes.func.isRequired,
+  roving: PropTypes.func.isRequired,
+};
+
 const ActionsBarContainer = props => <ActionsBar {...props} />;
 const POLLING_ENABLED = Meteor.settings.public.poll.enabled;
 
-export default withTracker(() => {
+export default withTracker(({ chatID, compact }) => {
   const checkUnreadMessages = () => {
     const activeChats = userListService.getActiveChats();
     const hasUnreadMessages = activeChats
@@ -41,6 +48,10 @@ export default withTracker(() => {
   const hasUnreadMessages = checkUnreadMessages();
 
   return {
+    activeChats: Service.getActiveChats(chatID),
+    isPublicChat: Service.isPublicChat,
+    roving: Service.roving,
+    compact,
     amIPresenter: Service.amIPresenter(),
     amIModerator: Service.amIModerator(),
     stopExternalVideoShare: ExternalVideoService.stopWatching,

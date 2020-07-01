@@ -22,7 +22,7 @@
 
 .bottom {
   @include mq($phone-landscape) {
-    margin-top: var(--mobile-margin-top);
+  margin-top: var(--mobile-margin-top);
   }
 }
 
