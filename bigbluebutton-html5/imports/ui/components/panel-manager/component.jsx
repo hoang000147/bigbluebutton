@@ -376,13 +376,13 @@ class PanelManager extends PureComponent {
       }
     }
 
-    /* if (openPanel === 'chat') {
+    if (openPanel === 'chat') {
       if (enableResize) {
-        panels.push(this.renderChatResizable());
+        panels.push(this.renderUserListResizable());
       } else {
-        panels.push(this.renderChat());
+        panels.push(this.renderUserList());
       }
-    } */
+    }
 
     if (openPanel === 'note') {
       if (enableResize) {
