@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
 import UserParticipantsContainer from './user-participants/container';
-import UserMessages from './user-messages/component';
+// import UserMessages from './user-messages/component';
 // import UserNotesContainer from './user-notes/container';
 import UserCaptionsContainer from './user-captions/container';
 import WaitingUsers from './waiting-users/component';
@@ -53,7 +53,7 @@ class UserContent extends PureComponent {
         className={styles.content}
         role="complementary"
       >
-        {CHAT_ENABLED
+        {/* {CHAT_ENABLED
           ? (<UserMessages
             {...{
               isPublicChat,
@@ -64,7 +64,7 @@ class UserContent extends PureComponent {
             }}
           />
           ) : null
-        }
+        } */}
         {currentUser.role === ROLE_MODERATOR
           ? (
             <UserCaptionsContainer

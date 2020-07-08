@@ -181,7 +181,7 @@ class Pad extends PureComponent {
     } = this.props;
 
     if (!amIModerator) {
-      Session.set('openPanel', 'userlist');
+      Session.set('openPanel', '');
       return null;
     }
 
@@ -193,7 +193,7 @@ class Pad extends PureComponent {
         <header className={styles.header}>
           <div className={styles.title}>
             <Button
-              onClick={() => { Session.set('openPanel', 'userlist'); }}
+              onClick={() => { Session.set('openPanel', ''); }}
               aria-label={intl.formatMessage(intlMessages.hide)}
               label={name}
               icon="left_arrow"

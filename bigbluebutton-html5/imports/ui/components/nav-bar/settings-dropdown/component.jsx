@@ -15,7 +15,7 @@ import DropdownListItem from '/imports/ui/components/dropdown/list/item/componen
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
-import FullscreenService from '../../fullscreen-button/service';
+// import FullscreenService from '../../fullscreen-button/service';
 
 import { styles } from '../styles';
 
@@ -24,10 +24,10 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.optionsLabel',
     description: 'Options button label',
   },
-  fullscreenLabel: {
+  /* fullscreenLabel: {
     id: 'app.navBar.settingsDropdown.fullscreenLabel',
     description: 'Make fullscreen option label',
-  },
+  }, */
   settingsLabel: {
     id: 'app.navBar.settingsDropdown.settingsLabel',
     description: 'Open settings option label',
@@ -40,10 +40,10 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.aboutDesc',
     description: 'Describes about option',
   },
-  fullscreenDesc: {
+  /* fullscreenDesc: {
     id: 'app.navBar.settingsDropdown.fullscreenDesc',
     description: 'Describes fullscreen option',
-  },
+  }, */
   settingsDesc: {
     id: 'app.navBar.settingsDropdown.settingsDesc',
     description: 'Describes settings option',
@@ -84,9 +84,9 @@ const intlMessages = defineMessages({
 
 const propTypes = {
   intl: intlShape.isRequired,
-  handleToggleFullscreen: PropTypes.func.isRequired,
+  // handleToggleFullscreen: PropTypes.func.isRequired,
   mountModal: PropTypes.func.isRequired,
-  noIOSFullscreen: PropTypes.bool,
+  // noIOSFullscreen: PropTypes.bool,
   amIModerator: PropTypes.bool,
   shortcuts: PropTypes.string,
   isBreakoutRoom: PropTypes.bool,
@@ -94,7 +94,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  noIOSFullscreen: true,
+  // noIOSFullscreen: true,
   amIModerator: false,
   shortcuts: '',
   isBreakoutRoom: false,
@@ -108,21 +108,21 @@ class SettingsDropdown extends PureComponent {
 
     this.state = {
       isSettingOpen: false,
-      isFullscreen: false,
+      // isFullscreen: false,
     };
 
     this.onActionsShow = this.onActionsShow.bind(this);
     this.onActionsHide = this.onActionsHide.bind(this);
-    this.onFullscreenChange = this.onFullscreenChange.bind(this);
+    // this.onFullscreenChange = this.onFullscreenChange.bind(this);
   }
 
-  componentDidMount() {
+  /* componentDidMount() {
     document.documentElement.addEventListener('fullscreenchange', this.onFullscreenChange);
   }
 
   componentWillUnmount() {
     document.documentElement.removeEventListener('fullscreenchange', this.onFullscreenChange);
-  }
+  } */
 
   onActionsShow() {
     this.setState({
@@ -136,7 +136,7 @@ class SettingsDropdown extends PureComponent {
     });
   }
 
-  onFullscreenChange() {
+  /* onFullscreenChange() {
     const { isFullscreen } = this.state;
     const newIsFullscreen = FullscreenService.isFullScreen(document.documentElement);
     if (isFullscreen !== newIsFullscreen) {
@@ -173,7 +173,7 @@ class SettingsDropdown extends PureComponent {
         onClick={handleToggleFullscreen}
       />
     );
-  }
+  } */
 
   renderMenuItems() {
     const {
@@ -189,7 +189,7 @@ class SettingsDropdown extends PureComponent {
 
 
     return _.compact([
-      this.getFullscreenItem(),
+      /* this.getFullscreenItem(), */
       (<DropdownListItem
         key="list-item-settings"
         icon="settings"

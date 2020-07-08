@@ -52,7 +52,7 @@ const Note = (props) => {
         >
           <Button
             onClick={() => {
-              Session.set('openPanel', 'userlist');
+              Session.set('openPanel', '');
             }}
             aria-label={intl.formatMessage(intlMessages.hideNoteLabel)}
             label={intl.formatMessage(intlMessages.title)}

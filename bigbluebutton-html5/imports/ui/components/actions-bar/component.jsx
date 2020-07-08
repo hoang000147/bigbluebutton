@@ -149,18 +149,6 @@ class ActionsBar extends PureComponent {
             : null}
         </div>
         <div className={cx(actionBarClasses)}>
-          {CHAT_ENABLED
-            ? (<UserMessages
-              {...{
-                isPublicChat,
-                activeChats,
-                compact,
-                intl,
-                roving,
-              }}
-            />
-            ) : null
-          }
           <Button
             data-test="userListToggleButton"
             onClick={ActionsBar.handleToggleUserList}
@@ -196,6 +184,18 @@ class ActionsBar extends PureComponent {
               <CaptionsButtonContainer {...{ intl }} />
             )
             : null
+          }
+          {CHAT_ENABLED
+            ? (<UserMessages
+              {...{
+                isPublicChat,
+                activeChats,
+                compact,
+                intl,
+                roving,
+              }}
+            />
+            ) : null
           }
           <ActionsDropdown {...{
             amIPresenter,

@@ -366,22 +366,15 @@ class PanelManager extends PureComponent {
     const { enableResize, openPanel } = this.props;
     if (openPanel === '') return null;
     const panels = [];
-    if (enableResize) {
-      panels.push(
-        this.renderUserListResizable(),
-      );
-    } else {
-      panels.push(this.renderUserList());
+    if (openPanel === 'userlist') {
+      if (enableResize) {
+        panels.push(
+          this.renderUserListResizable(),
+        );
+      } else {
+        panels.push(this.renderUserList());
+      }
     }
-
-    /* if (openPanel === '') return null;
-    const panels = [];
-    if (enableResize) {
-      panels.push(
-        this.renderUserListResizable(),
-      );
-    } else {
-      panels.push(this.renderUserList()); */
 
     /* if (openPanel === 'chat') {
       if (enableResize) {
