@@ -121,8 +121,8 @@ class UserMessages extends PureComponent {
     } = this.props;
 
     return (
-      <div /* className={styles.messages} */>
-        {/* <div className={styles.container}>
+      /* <div className={styles.messages}>
+        <div className={styles.container}>
           {
             !compact ? (
               <h2 className={styles.smallTitle}>
@@ -132,13 +132,13 @@ class UserMessages extends PureComponent {
               <hr className={styles.separator} />
             )
           }
-        </div> */}
-        {/* <div
+        </div>
+        <div
           role="tabpanel"
           tabIndex={0}
           className={styles.scrollableList}
           ref={(ref) => { this._msgsList = ref; }}
-        > */}
+        > */
           <div 
             className={styles.list}
             ref={(ref) => { this._msgsList = ref; }}
@@ -147,8 +147,8 @@ class UserMessages extends PureComponent {
               {this.getActiveChats()}
             </TransitionGroup>
           </div>
-        {/* </div> */}
-      </div>
+        /* </div>
+       </div> */
     );
   }
 }

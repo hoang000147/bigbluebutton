@@ -61,13 +61,30 @@ const CHAT_ENABLED = Meteor.settings.public.chat.enabled;
 
 class ActionsBar extends PureComponent {
   static handleToggleUserList() {
-    Session.set(
+    /* Session.set(
       'openPanel',
       Session.get('openPanel') !== ''
         ? ''
         : 'userlist',
-    );
-    Session.set('idChatOpen', '');
+    ); */
+
+    /* Session.set(
+      'openPanel',
+      Session.get('openPanel') !== 'userlist'
+        ? 'userlist'
+        : '',
+    ); */ 
+
+    if ( Session.get('openPanel').includes('userlist')) {
+      Session.set('openPanel', Session.get('openPanel').replace('userlist',''));
+    } else if ( Session.get('openPanel').includes('chat') ) {
+      //Session.set('openPanel', ''); 
+      Session.set('openPanel', Session.get('openPanel').replace('chat',''));
+    } else {
+      Session.set('openPanel', Session.get('openPanel').concat('userlist'));
+    };
+
+    // Session.set('idChatOpen', '');
   }
 
   componentDidMount() {

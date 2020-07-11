@@ -82,7 +82,7 @@ public:
     enableNetworkMonitoring: false
     packetLostThreshold: 10
   kurento:
-    wsUrl: wss://hadtechbbb.tk/bbb-webrtc-sfu
+    wsUrl: wss://hadtechbbb.cf/bbb-webrtc-sfu
     chromeDefaultExtensionKey: akgoaoikmbmhcopjgakkcepdgdgkjfbc
     chromeDefaultExtensionLink: https://chrome.google.com/webstore/detail/bigbluebutton-screenshare/akgoaoikmbmhcopjgakkcepdgdgkjfbc
     chromeExtensionKey: KEY
@@ -167,7 +167,7 @@ public:
       enabled: true
   note:
     enabled: true
-    url: https://hadtechbbb.tk/pad
+    url: https://hadtechbbb.cf/pad
     config:
       showLineNumbers: false
       showChat: false

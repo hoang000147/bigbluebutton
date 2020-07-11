@@ -191,8 +191,8 @@
 }
 
 .breakoutRoom {
-  height: 100%;
-  width: 20vw;
+  // height: 100%;
+  // width: 20vw;
   background-color: var(--color-white);
   @include mq($small-only) {
     width: auto;

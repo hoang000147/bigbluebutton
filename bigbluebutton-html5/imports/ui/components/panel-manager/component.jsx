@@ -29,6 +29,10 @@ const intlMessages = defineMessages({
     id: 'app.userList.label',
     description: 'Aria-label for Userlist Nav',
   },
+  breakoutRoomLabel: {
+    id: 'app.breakoutRoom.label',
+    description: 'Aria-label for Breakout Room Section',
+  },
 });
 
 const propTypes = {
@@ -67,6 +71,10 @@ const CAPTIONS_MAX_WIDTH = 400;
 const WAITING_MIN_WIDTH = DEFAULT_PANEL_WIDTH;
 const WAITING_MAX_WIDTH = 800;
 
+// Variables for resizing breakout room panel.
+const BREAKOUT_MIN_WIDTH = DEFAULT_PANEL_WIDTH;
+const BREAKOUT_MAX_WIDTH = 400;
+
 const dispatchResizeEvent = () => window.dispatchEvent(new Event('resize'));
 
 class PanelManager extends PureComponent {
@@ -88,6 +96,7 @@ class PanelManager extends PureComponent {
       noteWidth: DEFAULT_PANEL_WIDTH,
       captionsWidth: DEFAULT_PANEL_WIDTH,
       waitingWidth: DEFAULT_PANEL_WIDTH,
+      breakoutWidth: DEFAULT_PANEL_WIDTH,
     };
   }
 
@@ -311,10 +320,61 @@ class PanelManager extends PureComponent {
   }
 
   renderBreakoutRoom() {
+    const { intl, enableResize } = this.props;
+
     return (
       <div className={styles.breakoutRoom} key={this.breakoutroomKey}>
         <BreakoutRoomContainer />
       </div>
+      /* <section
+        className={styles.breakoutRoom} 
+        aria-label={intl.formatMessage(intlMessages.breakoutRoomLabel)}
+        key={enableResize ? null : this.breakoutroomKey}
+      >
+        <BreakoutRoomContainer />
+      </section> */
+    );
+  }
+
+  renderBreakoutRoomResizable() {
+    const { breakoutWidth } = this.state;
+    const { isRTL } = this.props;
+
+    const resizableEnableOptions = {
+      top: false,
+      right: !!isRTL,
+      bottom: false,
+      left: !isRTL,
+      topRight: false,
+      bottomRight: false,
+      bottomLeft: false,
+      topLeft: false,
+    };
+
+    return (
+      <Resizable
+        minWidth={BREAKOUT_MIN_WIDTH}
+        maxWidth={BREAKOUT_MAX_WIDTH}
+        style={{ order: '3' }}
+        ref={(node) => { this.resizableBreakoutRoom = node; }}
+        enable={resizableEnableOptions}
+        key={this.breakoutroomKey}
+        size={{ width: breakoutWidth }}
+        onResizeStop={(e, direction, ref, d) => {
+          window.dispatchEvent(new Event('resize'));
+          this.setState({
+            breakoutWidth: breakoutWidth + d.width,
+          });
+        }}
+        /* onResize={dispatchResizeEvent}        
+        onResizeStop={(e, direction, ref, d) => {
+          this.setState({
+            breakoutWidth: breakoutWidth + d.width,
+          });
+        }} */
+      >
+        {this.renderBreakoutRoom()}
+      </Resizable>
     );
   }
 
@@ -366,7 +426,7 @@ class PanelManager extends PureComponent {
     const { enableResize, openPanel } = this.props;
     if (openPanel === '') return null;
     const panels = [];
-    if (openPanel === 'userlist') {
+    if (openPanel.includes('userlist')) {
       if (enableResize) {
         panels.push(
           this.renderUserListResizable(),
@@ -376,7 +436,7 @@ class PanelManager extends PureComponent {
       }
     }
 
-    if (openPanel === 'chat') {
+    if (openPanel.includes('chat')) {
       if (enableResize) {
         panels.push(this.renderUserListResizable());
       } else {
@@ -384,7 +444,7 @@ class PanelManager extends PureComponent {
       }
     }
 
-    if (openPanel === 'note') {
+    if (openPanel.includes('note')) {
       if (enableResize) {
         panels.push(this.renderNoteResizable());
       } else {
@@ -392,7 +452,7 @@ class PanelManager extends PureComponent {
       }
     }
 
-    if (openPanel === 'captions') {
+    if (openPanel.includes('captions')) {
       if (enableResize) {
         panels.push(this.renderCaptionsResizable());
       } else {
@@ -400,7 +460,7 @@ class PanelManager extends PureComponent {
       }
     }
 
-    if (openPanel === 'poll') {
+    if (openPanel.includes('poll')) {
       if (enableResize) {
         panels.push(this.renderPollResizable());
       } else {
@@ -408,15 +468,15 @@ class PanelManager extends PureComponent {
       }
     }
 
-    if (openPanel === 'breakoutroom') {
+    if (openPanel.includes('breakoutroom')) {
       if (enableResize) {
-        panels.push(this.renderBreakoutRoom());
+        panels.push(this.renderBreakoutRoomResizable());
       } else {
         panels.push(this.renderBreakoutRoom());
       }
     }
 
-    if (openPanel === 'waitingUsersPanel') {
+    if (openPanel.includes('waitingUsersPanel')) {
       if (enableResize) {
         panels.push(this.renderWaitingUsersPanelResizable());
       } else {
