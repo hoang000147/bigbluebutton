@@ -4,18 +4,10 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import cx from 'classnames';
 // import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
-//import { styles } from './styles';
-import { styles } from '../styles';
+import { styles } from './styles';
 import { findDOMNode } from 'react-dom';
 import ChatListItemContainer from '../chat-list-item/container';
 import { withModalMounter } from '/imports/ui/components/modal/service';
-import Button from '/imports/ui/components/button/component';
-import Dropdown from '/imports/ui/components/dropdown/component';
-import DropdownTrigger from '/imports/ui/components/dropdown/trigger/component';
-import DropdownContent from '/imports/ui/components/dropdown/content/component';
-import DropdownList from '/imports/ui/components/dropdown/list/component';
-import DropdownListItem from '/imports/ui/components/dropdown/list/item/component';
-import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 
 const propTypes = {
   activeChats: PropTypes.arrayOf(String).isRequired,
@@ -25,12 +17,10 @@ const propTypes = {
   }).isRequired,
   isPublicChat: PropTypes.func.isRequired,
   roving: PropTypes.func.isRequired,
-  hasUnreadMessages: PropTypes.bool,
 };
 
 const defaultProps = {
   compact: false,
-  hasUnreadMessages: false,
 };
 
 const listTransition = {
@@ -133,12 +123,7 @@ class UserMessages extends PureComponent {
     const {
       intl,
       compact,
-      hasUnreadMessages,
     } = this.props;
-
-    const btnWithNotificationDot = {};
-    btnWithNotificationDot[styles.btn] = true;
-    btnWithNotificationDot[styles.btnWithNotificationDot] = hasUnreadMessages;
 
     return (
       /* <div className={styles.messages}>
@@ -166,14 +151,12 @@ class UserMessages extends PureComponent {
           <Dropdown>
             <DropdownTrigger>
               <Button
-                className={cx(btnWithNotificationDot)}
+                className={cx(styles.button)}
                 icon="chat"
                 label={intl.formatMessage(intlMessages.chatLabel)}
                 size="lg"
                 circle
                 hideLabel
-                ghost
-                data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
 
                 // FIXME: Without onClick react proptypes keep warning
                 // even after the DropdownTrigger inject an onClick handler

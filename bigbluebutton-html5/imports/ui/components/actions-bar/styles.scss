@@ -55,6 +55,7 @@
 }
 
 .left {
+  position: absolute;
   display: inherit;
   flex: 0;
   @include mq($small-only) {
@@ -84,6 +85,12 @@
 .centerWithActions {
   @include mq($xsmall-only) {
     justify-content: flex-end;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .center {
+    visibility: hidden;
   }
 }
 

@@ -312,6 +312,11 @@
 .top-right {
   @extend %down-caret;
   @extend %horz-left-caret;
+  min-width: 10.5rem;
+
+  @include mq($small-only) {
+    width: auto;
+  }
 }
 
 [dir="rtl"] .top-left {

@@ -16,7 +16,8 @@ import LeaveMeetingContainer from './leave-meeting/container';
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
 import PresentationOptionsContainer from './presentation-options/component';
 import RecordingIndicator from './recording-indicator/container';
-import UserMessages from './user-messages/component';
+// import UserMessages from './user-messages/component';
+import UserMessagesContainer from './user-messages/container';
 
 const intlMessages = defineMessages({
   toggleUserListLabel: {
@@ -52,7 +53,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  hasUnreadMessages: false,
+  // hasUnreadMessages: false,
   shortcuts: '',
   compact: false,
 };
@@ -67,13 +68,6 @@ class ActionsBar extends PureComponent {
         ? ''
         : 'userlist',
     ); */
-
-    /* Session.set(
-      'openPanel',
-      Session.get('openPanel') !== 'userlist'
-        ? 'userlist'
-        : '',
-    ); */ 
 
     if ( Session.get('openPanel').includes('userlist')) {
       Session.set('openPanel', Session.get('openPanel').replace('userlist',''));
@@ -107,6 +101,8 @@ class ActionsBar extends PureComponent {
   render() {
     const {
       amIPresenter,
+      handleExitVideo,
+      handleJoinVideo,
       handleShareScreen,
       handleUnshareScreen,
       isVideoBroadcasting,
@@ -131,7 +127,6 @@ class ActionsBar extends PureComponent {
       presentations,
       setPresentation,
       podIds,
-      //leaveMeeting,
       mountModal,
       isExpanded,
       shortcuts: TOGGLE_USERLIST_AK,
@@ -161,7 +156,10 @@ class ActionsBar extends PureComponent {
           <AudioControlsContainer />
           {enableVideo
             ? (
-              <JoinVideoOptionsContainer />
+              <JoinVideoOptionsContainer
+                handleJoinVideo={handleJoinVideo}
+                handleCloseVideo={handleExitVideo}
+              />
             )
             : null}
         </div>
@@ -172,7 +170,7 @@ class ActionsBar extends PureComponent {
             ghost
             circle
             hideLabel
-            /* data-test={hasUnreadMessages ? 'hasUnreadMessages' : null} */
+            // data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
             label={intl.formatMessage(intlMessages.toggleUserListLabel)}
             aria-label={ariaLabel}
             icon="user"
@@ -203,7 +201,7 @@ class ActionsBar extends PureComponent {
             : null
           }
           {CHAT_ENABLED
-            ? (<UserMessages
+            /* ? (<UserMessages
               {...{
                 isPublicChat,
                 activeChats,
@@ -211,8 +209,17 @@ class ActionsBar extends PureComponent {
                 intl,
                 roving,
               }}
-            />
-            ) : null
+            /> */
+            ? (<UserMessagesContainer
+              {...{
+                isPublicChat,
+                activeChats,
+                compact,
+                intl,
+                roving,
+              }}
+            />)
+            : null
           }
           <ActionsDropdown {...{
             amIPresenter,
@@ -240,7 +247,7 @@ class ActionsBar extends PureComponent {
             )
             : null
           }
-          <LeaveMeetingContainer />
+          <LeaveMeetingContainer amIModerator={amIModerator} />
         </div>
       </div>
     );

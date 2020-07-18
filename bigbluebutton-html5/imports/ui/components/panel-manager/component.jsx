@@ -13,10 +13,6 @@ import { styles } from '/imports/ui/components/app/styles';
 import _ from 'lodash';
 
 const intlMessages = defineMessages({
-  chatLabel: {
-    id: 'app.chat.label',
-    description: 'Aria-label for Chat Section',
-  },
   noteLabel: {
     id: 'app.note.label',
     description: 'Aria-label for Note Section',

@@ -2,13 +2,16 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import LeaveMeeting from './component';
+import { meetingIsBreakout } from '/imports/ui/components/app/service';
 
-const LeaveMeetingContainer = ({ children, ...props }) => (
-  <LeaveMeeting {...props}>
-    {children}
-  </LeaveMeeting>
+const LeaveMeetingContainer = props => (
+  <LeaveMeeting {...props} />
 );
 
-export default withTracker(() => ({
-  isMeteorConnected: Meteor.status().connected,
-}))(LeaveMeetingContainer);
+export default withTracker((props) => {
+  return {
+    amIModerator: props.amIModerator,
+    isMeteorConnected: Meteor.status().connected,
+    isBreakoutRoom: meetingIsBreakout(),
+  };
+})(LeaveMeetingContainer);

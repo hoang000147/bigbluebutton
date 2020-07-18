@@ -116,13 +116,13 @@ class RecordingIndicator extends PureComponent {
       : intlMessages.recordingIndicatorOff);
 
     let recordTitle = '';
-    if (!recording) {
+    /* if (!recording) {
       recordTitle = time > 0
         ? intl.formatMessage(intlMessages.resumeTitle)
         : intl.formatMessage(intlMessages.startTitle);
     } else {
       recordTitle = intl.formatMessage(intlMessages.stopTitle);
-    }
+    } */
 
     const recordingToggle = () => {
       if (!micUser) {
@@ -193,9 +193,9 @@ class RecordingIndicator extends PureComponent {
 
     return (
       <Fragment>
-        {record
+        {/* record
           ? <span className={styles.presentationTitleSeparator} aria-hidden>|</span>
-          : null}
+          : null */}
         <div className={styles.recordingIndicator}>
           {showButton
             ? recordingButton

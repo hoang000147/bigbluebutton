@@ -11,6 +11,10 @@ import ChatUnreadCounter from './chat-unread-messages/component';
 import Button from '../../button/component';
 
 const intlMessages = defineMessages({
+  chatLabel: {
+    id: 'app.chat.label',
+    description: 'chat label',
+  },
   titlePublic: {
     id: 'app.chat.titlePublic',
     description: 'title for public chat',
@@ -83,10 +87,11 @@ const ChatListItem = (props) => {
   toggleBtnClasses[styles.btnWithNotificationDot] = hasUnreadMessages;
 
   return (
-    <Button
+    /* <Button
       data-test="chatButton"
       role="button"
       className={cx(toggleBtnClasses)}
+      label={intl.formatMessage(intlMessages.chatLabel)}
       data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
       ghost
       circle
@@ -130,7 +135,50 @@ const ChatListItem = (props) => {
           )
           : null}
       </div>
-    </Button>
+    </Button> */
+
+    <div
+      data-test="chatButton"
+      role="button"
+      className={cx(styles.chatListItem, linkClasses)}
+      aria-expanded={isCurrentChat}
+      tabIndex={tabIndex}
+      accessKey={isPublicChat(chat) ? TOGGLE_CHAT_PUB_AK : null}
+      onClick={() => handleClickToggleChat(chat.userId)}
+      id="chat-toggle-button"
+      aria-label={isPublicChat(chat) ? intl.formatMessage(intlMessages.titlePublic) : chat.name}
+    >
+
+      <div className={styles.chatListItemLink}>
+        {/* <div className={styles.chatIcon}>
+          {chat.icon
+            ? <ChatIcon icon={chat.icon} />
+            : (
+              <ChatAvatar
+                isModerator={chat.isModerator}
+                color={chat.color}
+                name={chat.name.toLowerCase().slice(0, 2)}
+              />
+            )}
+        </div> */}
+        <div className={styles.chatName}>
+          {!compact
+            ? (
+              <span className={styles.chatNameMain}>
+                {isPublicChat(chat)
+                  ? intl.formatMessage(intlMessages.titlePublic) : chat.name}
+              </span>
+            ) : null}
+        </div>
+        {(chat.unreadCounter > 0)
+          ? (
+            <ChatUnreadCounter
+              counter={chat.unreadCounter}
+            />
+          )
+          : null}
+      </div>
+    </div>
   );
 };
 

@@ -14,15 +14,12 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import ExternalVideoModal from '/imports/ui/components/external-video-player/modal/container';
 import cx from 'classnames';
-import UserNotesContainer from '../user-notes/container';
+import NoteService from '/imports/ui/components/note/service';
 import { styles } from '../styles';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
-  // intl: intlShape.isRequired,
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func.isRequired,
-  }).isRequired,
+  intl: intlShape.isRequired,
   mountModal: PropTypes.func.isRequired,
   amIModerator: PropTypes.bool.isRequired,
   shortcuts: PropTypes.string,
@@ -102,7 +99,6 @@ class ActionsDropdown extends PureComponent {
     this.handlePresentationClick = this.handlePresentationClick.bind(this);
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
-    this.handleSharedNotesClick = this.handleSharedNotesClick.bind(this);
   }
 
   componentWillUpdate(nextProps) {
@@ -145,7 +141,7 @@ class ActionsDropdown extends PureComponent {
         label={formatMessage(sharedNotesLabel)}
         description={formatMessage(sharedNotesDesc)}
         key={this.noteId}
-        onClick={this.handleSharedNotesClick}
+        onClick={NoteService.toggleNotePanel}
       />),
       (amIPresenter && isPollingEnabled
         ? (
@@ -239,15 +235,6 @@ class ActionsDropdown extends PureComponent {
     return presentationItemElements;
   }
 
-  handleSharedNotesClick() {
-    const { mountModal, intl } = this.props;
-    mountModal(<UserNotesContainer
-      {...{
-        intl,
-      }}
-    />);
-  }
-
   handleExternalVideoClick() {
     const { mountModal } = this.props;
     mountModal(<ExternalVideoModal />);
@@ -282,17 +269,19 @@ class ActionsDropdown extends PureComponent {
       <Dropdown ref={(ref) => { this._dropdown = ref; }}>
         <DropdownTrigger tabIndex={0} accessKey={OPEN_ACTIONS_AK}>
           <Button
+            className={cx(styles.btn)}
             hideLabel
             aria-label={intl.formatMessage(intlMessages.actionsLabel)}
             label={intl.formatMessage(intlMessages.actionsLabel)}
             icon="plus"
             color="default"
             size="lg"
+            ghost
             circle
             onClick={() => null}
           />
         </DropdownTrigger>
-        <DropdownContent placement="top left">
+        <DropdownContent placement="bottom left">
           <DropdownList>
             {children}
           </DropdownList>

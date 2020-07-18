@@ -34,10 +34,10 @@ const intlMessages = defineMessages({
     id: 'app.userList.label',
     description: 'Aria-label for Userlist Nav',
   },
-  chatLabel: {
+  /* chatLabel: {
     id: 'app.chat.label',
     description: 'Aria-label for Chat Section',
-  },
+  }, */
   mediaLabel: {
     id: 'app.media.label',
     description: 'Aria-label for Media Section',
