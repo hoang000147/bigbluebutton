@@ -17,7 +17,7 @@ import DesktopShare from '../actions-bar/desktop-share/component';
 import ActionsDropdown from './actions-dropdown/component';
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
-import LeaveMeetingContainer from '../actions-bar/leave-meeting/container'; 
+import LeaveMeetingContainer from '../actions-bar/leave-meeting/container';
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
 import PresentationOptionsContainer from '../actions-bar/presentation-options/component';
 import UserMessages from '../actions-bar/user-messages/component';
@@ -27,7 +27,7 @@ const intlMessages = defineMessages({
     id: 'app.navBar.userListToggleBtnLabel',
     description: 'Toggle button label',
   },
-  /*toggleUserListAria: {
+  /* toggleUserListAria: {
     id: 'app.navBar.toggleUserList.ariaLabel',
     description: 'description of the lists inside the userlist',
   },
@@ -38,7 +38,7 @@ const intlMessages = defineMessages({
   toggleChatLabel: {
     id: 'app.chat.titlePublic',
     description: 'Chat toggle button label',
-  },*/
+  }, */
   fullscreenLabel: {
     id: 'app.navBar.settingsDropdown.fullscreenLabel',
     description: 'Make fullscreen option label',
@@ -55,7 +55,7 @@ const intlMessages = defineMessages({
     id: 'app.navBar.settingsDropdown.exitFullscreenLabel',
     description: 'Exit fullscreen option label',
   },
-  
+
   toggleUserListLabel: {
     id: 'app.navBar.userListToggleBtnLabel',
     description: 'Toggle button label',
@@ -71,7 +71,7 @@ const intlMessages = defineMessages({
 });
 
 const propTypes = {
-  //intl: intlShape.isRequired,
+  // intl: intlShape.isRequired,
   presentationTitle: PropTypes.string,
   hasUnreadMessages: PropTypes.bool,
   shortcuts: PropTypes.string,
@@ -80,7 +80,7 @@ const propTypes = {
   handleToggleFullscreen: PropTypes.func.isRequired,
   mountModal: PropTypes.func.isRequired,
 
-  
+
   activeChats: PropTypes.arrayOf(String).isRequired,
   compact: PropTypes.bool,
   intl: PropTypes.shape({
@@ -103,7 +103,7 @@ const defaultProps = {
 const ALLOW_FULLSCREEN = Meteor.settings.public.app.allowFullscreen;
 
 /* actions-bar */
-const CHAT_ENABLED = Meteor.settings.public.chat.enabled; 
+const CHAT_ENABLED = Meteor.settings.public.chat.enabled;
 
 class NavBar extends PureComponent {
   constructor(props) {
@@ -118,21 +118,20 @@ class NavBar extends PureComponent {
 
   /* actions-bar */
 
-  static handleToggleUserList() { 
-
-    if ( Session.get('openPanel').includes('userlist')) {
-      Session.set('openPanel', Session.get('openPanel').replace('userlist',''));
-    } else if ( Session.get('openPanel').includes('chat') ) {
-      //Session.set('openPanel', ''); 
-      Session.set('openPanel', Session.get('openPanel').replace('chat',''));
+  static handleToggleUserList() {
+    if (Session.get('openPanel').includes('userlist')) {
+      Session.set('openPanel', Session.get('openPanel').replace('userlist', ''));
+    } else if (Session.get('openPanel').includes('chat')) {
+      // Session.set('openPanel', '');
+      Session.set('openPanel', Session.get('openPanel').replace('chat', ''));
     } else {
       Session.set('openPanel', Session.get('openPanel').concat('userlist'));
-    };
+    }
 
     // Session.set('idChatOpen', '');
   }
 
-  /*static handleToggleUserList() {
+  /* static handleToggleUserList() {
     Session.set(
       'openPanel',
       Session.get('openPanel') !== ''
@@ -140,7 +139,7 @@ class NavBar extends PureComponent {
         : 'userlist',
     );
     Session.set('idChatOpen', '');
-  }*/
+  } */
 
   componentDidMount() {
     const {
@@ -152,7 +151,7 @@ class NavBar extends PureComponent {
       || getFromUserSettings('bbb_outside_toggle_recording', false)) {
       connectRecordingObserver();
       window.addEventListener('message', processOutsideToggleRecording);
-    };
+    }
 
     document.documentElement.addEventListener('fullscreenchange', this.onFullscreenChange);
   }
@@ -248,7 +247,7 @@ class NavBar extends PureComponent {
     toggleBtnClasses[styles.btn] = true;
     toggleBtnClasses[styles.btnWithNotificationDot] = hasUnreadMessages; */
 
-    /*let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
+    /* let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : ''; */
 
     /* actions-bar */
@@ -263,7 +262,7 @@ class NavBar extends PureComponent {
     toggleBtnClasses[styles.btn] = true;
     // toggleBtnClasses[styles.btnWithNotificationDot] = hasUnreadMessages;
 
-    let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
+    const ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     // ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
 
     return (
@@ -374,10 +373,8 @@ class NavBar extends PureComponent {
           </div>
         </div>
         <div className={styles.bottom}>
-          <div className={styles.left}>
-          </div>
-          <div className={styles.center}>
-          </div>
+          <div className={styles.left} />
+          <div className={styles.center} />
           <div className={styles.right}>
             <TalkingIndicatorContainer amIModerator={amIModerator} />
           </div>

@@ -87,7 +87,7 @@ const ChatListItem = (props) => {
   toggleBtnClasses[styles.btnWithNotificationDot] = hasUnreadMessages;
 
   return (
-    /* <Button
+  /* <Button
       data-test="chatButton"
       role="button"
       className={cx(toggleBtnClasses)}

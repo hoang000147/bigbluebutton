@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import cx from 'classnames';
 // import { styles } from '/imports/ui/components/user-list/user-list-content/styles';
-//import { styles } from './styles';
+// import { styles } from './styles';
 import { styles } from '../styles';
 import { findDOMNode } from 'react-dom';
 import ChatListItemContainer from '../chat-list-item/container';
@@ -141,7 +141,7 @@ class UserMessages extends PureComponent {
     btnWithNotificationDot[styles.btnWithNotificationDot] = hasUnreadMessages;
 
     return (
-      /* <div className={styles.messages}>
+    /* <div className={styles.messages}>
         <div className={styles.container}>
           {
             !compact ? (
@@ -159,45 +159,45 @@ class UserMessages extends PureComponent {
           className={styles.scrollableList}
           ref={(ref) => { this._msgsList = ref; }}
         > */
-          /* <div 
+    /* <div
             className={styles.list}
             ref={(ref) => { this._msgsList = ref; }}
           > */
-          <Dropdown>
-            <DropdownTrigger>
-              <Button
-                className={cx(btnWithNotificationDot)}
-                icon="chat"
-                label={intl.formatMessage(intlMessages.chatLabel)}
-                size="lg"
-                circle
-                hideLabel
-                ghost
-                data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
+      <Dropdown>
+        <DropdownTrigger>
+          <Button
+            className={cx(btnWithNotificationDot)}
+            icon="chat"
+            label={intl.formatMessage(intlMessages.chatLabel)}
+            size="lg"
+            circle
+            hideLabel
+            ghost
+            data-test={hasUnreadMessages ? 'hasUnreadMessages' : null}
 
                 // FIXME: Without onClick react proptypes keep warning
                 // even after the DropdownTrigger inject an onClick handler
-                onClick={() => null}
-              />
-            </DropdownTrigger>
-            <DropdownContent placement="top right">
-              <DropdownList>
-                <div
-                  className={styles.list}
-                  ref={(ref) => { this._msgsList = ref; }}
-                >
-                  <TransitionGroup ref={(ref) => { this._msgItems = ref; }}>
-                    {this.getActiveChats()}
-                  </TransitionGroup>
-                </div>
-              </DropdownList>
-            </DropdownContent>
-          </Dropdown>
-            /* <TransitionGroup ref={(ref) => { this._msgItems = ref; }}>
+            onClick={() => null}
+          />
+        </DropdownTrigger>
+        <DropdownContent placement="top right">
+          <DropdownList>
+            <div
+              className={styles.list}
+              ref={(ref) => { this._msgsList = ref; }}
+            >
+              <TransitionGroup ref={(ref) => { this._msgItems = ref; }}>
+                {this.getActiveChats()}
+              </TransitionGroup>
+            </div>
+          </DropdownList>
+        </DropdownContent>
+      </Dropdown>
+    /* <TransitionGroup ref={(ref) => { this._msgItems = ref; }}>
               {this.getActiveChats()}
-            </TransitionGroup> 
+            </TransitionGroup>
           </div>  */
-        /* </div>
+    /* </div>
        </div> */
     );
   }

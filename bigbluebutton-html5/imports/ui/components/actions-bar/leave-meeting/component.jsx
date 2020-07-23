@@ -100,7 +100,7 @@ class LeaveMeeting extends PureComponent {
       shouldRenderLogoutOption,
     ]);
   }
- 
+
   renderEndMeeting() {
     const {
       intl, isMeteorConnected, amIModerator, isBreakoutRoom,
@@ -151,29 +151,31 @@ class LeaveMeeting extends PureComponent {
 
     return (
       amIModerator && isMeteorConnected
-        ? <Dropdown>
-          <DropdownTrigger>
-            <Button
-              className={cx(styles.button)}
-              icon="logout"
-              label={intl.formatMessage(intlMessages.leaveMeetingLabel)}
-              color="danger"
-              description={intl.formatMessage(intlMessages.leaveMeetingDesc)}
-              size="lg"
-              circle
-              hideLabel
+        ? (
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                className={cx(styles.button)}
+                icon="logout"
+                label={intl.formatMessage(intlMessages.leaveMeetingLabel)}
+                color="danger"
+                description={intl.formatMessage(intlMessages.leaveMeetingDesc)}
+                size="lg"
+                circle
+                hideLabel
 
               // FIXME: Without onClick react proptypes keep warning
               // even after the DropdownTrigger inject an onClick handler
-              onClick={() => null}
-            />
-          </DropdownTrigger>
-          <DropdownContent placement="top right">
-            <DropdownList>
-              {this.renderEndMeeting()}
-            </DropdownList>
-          </DropdownContent>
-        </Dropdown>
+                onClick={() => null}
+              />
+            </DropdownTrigger>
+            <DropdownContent placement="top right">
+              <DropdownList>
+                {this.renderEndMeeting()}
+              </DropdownList>
+            </DropdownContent>
+          </Dropdown>
+        )
         : this.renderLeaveMeeting()
     );
   }

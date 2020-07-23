@@ -57,7 +57,6 @@ const mapActiveChats = (chat) => {
   const userId = GroupChat.findOne({ chatId }).users.filter(user => user !== currentUserId);
 
   return userId[0];
-
 };
 
 const sortChatsByName = (a, b) => {

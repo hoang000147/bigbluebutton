@@ -8,10 +8,8 @@ const LeaveMeetingContainer = props => (
   <LeaveMeeting {...props} />
 );
 
-export default withTracker((props) => {
-  return {
-    amIModerator: props.amIModerator,
-    isMeteorConnected: Meteor.status().connected,
-    isBreakoutRoom: meetingIsBreakout(),
-  };
-})(LeaveMeetingContainer);
+export default withTracker(props => ({
+  amIModerator: props.amIModerator,
+  isMeteorConnected: Meteor.status().connected,
+  isBreakoutRoom: meetingIsBreakout(),
+}))(LeaveMeetingContainer);

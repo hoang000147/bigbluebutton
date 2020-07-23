@@ -26,3 +26,4 @@ rocketchat:streamer
 cfs:power-queue
 cfs:micro-queue
 cfs:reactive-list
+fortawesome:fontawesome@=4.7.0

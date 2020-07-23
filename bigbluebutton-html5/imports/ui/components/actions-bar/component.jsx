@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Session } from 'meteor/session';
 import cx from 'classnames';
-import { styles } from './styles.scss';
 import { defineMessages, injectIntl } from 'react-intl';
+import { styles } from './styles.scss';
 import { withModalMounter } from '/imports/ui/components/modal/service';
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import getFromUserSettings from '/imports/ui/services/users-settings';
@@ -12,7 +12,7 @@ import DesktopShare from './desktop-share/component';
 import ActionsDropdown from './actions-dropdown/component';
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
-import LeaveMeetingContainer from './leave-meeting/container'; 
+import LeaveMeetingContainer from './leave-meeting/container';
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
 import PresentationOptionsContainer from './presentation-options/component';
 import RecordingIndicator from './recording-indicator/container';
@@ -69,14 +69,14 @@ class ActionsBar extends PureComponent {
         : 'userlist',
     ); */
 
-    if ( Session.get('openPanel').includes('userlist')) {
-      Session.set('openPanel', Session.get('openPanel').replace('userlist',''));
-    } else if ( Session.get('openPanel').includes('chat') ) {
-      //Session.set('openPanel', ''); 
-      Session.set('openPanel', Session.get('openPanel').replace('chat',''));
+    if (Session.get('openPanel').includes('userlist')) {
+      Session.set('openPanel', Session.get('openPanel').replace('userlist', ''));
+    } else if (Session.get('openPanel').includes('chat')) {
+      // Session.set('openPanel', '');
+      Session.set('openPanel', Session.get('openPanel').replace('chat', ''));
     } else {
       Session.set('openPanel', Session.get('openPanel').concat('userlist'));
-    };
+    }
 
     // Session.set('idChatOpen', '');
   }
@@ -135,7 +135,7 @@ class ActionsBar extends PureComponent {
       activeChats,
       isPublicChat,
       roving,
-   } = this.props;
+    } = this.props;
 
     const actionBarClasses = {};
 
@@ -147,7 +147,7 @@ class ActionsBar extends PureComponent {
     toggleBtnClasses[styles.btn] = true;
     // toggleBtnClasses[styles.btnWithNotificationDot] = hasUnreadMessages;
 
-    let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
+    const ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     // ariaLabel += hasUnreadMessages ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
 
     return (
@@ -210,15 +210,17 @@ class ActionsBar extends PureComponent {
                 roving,
               }}
             /> */
-            ? (<UserMessagesContainer
-              {...{
-                isPublicChat,
-                activeChats,
-                compact,
-                intl,
-                roving,
-              }}
-            />)
+            ? (
+              <UserMessagesContainer
+                {...{
+                  isPublicChat,
+                  activeChats,
+                  compact,
+                  intl,
+                  roving,
+                }}
+              />
+            )
             : null
           }
           <ActionsDropdown {...{

@@ -323,7 +323,7 @@ class PanelManager extends PureComponent {
         <BreakoutRoomContainer />
       </div>
       /* <section
-        className={styles.breakoutRoom} 
+        className={styles.breakoutRoom}
         aria-label={intl.formatMessage(intlMessages.breakoutRoomLabel)}
         key={enableResize ? null : this.breakoutroomKey}
       >
@@ -362,7 +362,7 @@ class PanelManager extends PureComponent {
             breakoutWidth: breakoutWidth + d.width,
           });
         }}
-        /* onResize={dispatchResizeEvent}        
+        /* onResize={dispatchResizeEvent}
         onResizeStop={(e, direction, ref, d) => {
           this.setState({
             breakoutWidth: breakoutWidth + d.width,

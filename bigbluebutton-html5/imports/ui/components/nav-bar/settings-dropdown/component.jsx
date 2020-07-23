@@ -198,7 +198,7 @@ class SettingsDropdown extends PureComponent {
         description={intl.formatMessage(intlMessages.settingsDesc)}
         onClick={() => mountModal(<SettingsMenuContainer />)}
       />),
-      (<DropdownListItem
+      /* (<DropdownListItem
         key="list-item-about"
         icon="about"
         label={intl.formatMessage(intlMessages.aboutLabel)}
@@ -215,7 +215,7 @@ class SettingsDropdown extends PureComponent {
             description={intl.formatMessage(intlMessages.helpDesc)}
             onClick={() => window.open(`${helpLink}`)}
           />
-        ),
+        ), */
       (<DropdownListItem
         key="list-item-shortcuts"
         icon="shortcuts"
@@ -223,7 +223,7 @@ class SettingsDropdown extends PureComponent {
         description={intl.formatMessage(intlMessages.hotkeysDesc)}
         onClick={() => mountModal(<ShortcutHelpComponent />)}
       />),
-      (isMeteorConnected ? <DropdownListSeparator key={_.uniqueId('list-separator-')} /> : null),
+      /* (isMeteorConnected ? <DropdownListSeparator key={_.uniqueId('list-separator-')} /> : null),
       allowedToEndMeeting && isMeteorConnected
         ? (<DropdownListItem
           key="list-item-end-meeting"
@@ -233,7 +233,7 @@ class SettingsDropdown extends PureComponent {
           onClick={() => mountModal(<EndMeetingConfirmationContainer />)}
         />
         )
-        : null,
+        : null, */
     ]);
   }
 

@@ -115,7 +115,7 @@ class RecordingIndicator extends PureComponent {
     const title = intl.formatMessage(recording ? intlMessages.recordingIndicatorOn
       : intlMessages.recordingIndicatorOff);
 
-    let recordTitle = '';
+    const recordTitle = '';
     /* if (!recording) {
       recordTitle = time > 0
         ? intl.formatMessage(intlMessages.resumeTitle)

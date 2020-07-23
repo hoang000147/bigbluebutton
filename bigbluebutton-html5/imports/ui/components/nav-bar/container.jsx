@@ -6,15 +6,15 @@ import Meetings from '/imports/api/meetings';
 import Users from '/imports/api/users';
 import Auth from '/imports/ui/services/auth';
 import getFromUserSettings from '/imports/ui/services/users-settings';
+import browser from 'browser-detect';
+import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import userListService from '../user-list/service';
 import Service from './service';
 import NavBar from './component';
-import browser from 'browser-detect';
 import FullscreenService from '../fullscreen-button/service';
 
 
-import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
 import PresentationService from '/imports/ui/components/presentation/service';
 import Presentations from '/imports/api/presentations';
 import ActionsBar from '../actions-bar/component';
@@ -34,7 +34,6 @@ import MediaService, {
   getSwapLayout,
   shouldEnableSwapLayout,
 } from '../media/service';
-
 
 
 const PUBLIC_CONFIG = Meteor.settings.public;
@@ -102,7 +101,7 @@ export default withTracker(({ chatID, compact }) => {
   const activeChatId = Session.get('idChatOpen');
 
   return {
-    //amIModerator,
+    // amIModerator,
     isExpanded,
     currentUserId: Auth.userID,
     processOutsideToggleRecording,

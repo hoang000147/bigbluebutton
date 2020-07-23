@@ -65,6 +65,8 @@
     "react-dropzone": "^7.0.1",
     "react-intl": "~2.7.2",
     "react-modal": "~3.6.1",
+    "react-native": "^0.63.1",
+    "react-native-vector-icons": "^7.0.0",
     "react-player": "^2.3.0",
     "react-render-in-browser": "^1.1.1",
     "react-tabs": "^2.3.1",
