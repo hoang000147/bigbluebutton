@@ -6,8 +6,7 @@ import Auth from '/imports/ui/services/auth';
 import Button from '/imports/ui/components/button/component';
 import getFromUserSettings from '/imports/ui/services/users-settings';
 import logoutRouteHandler from '/imports/utils/logoutRouteHandler';
-import AudioRating from './audio-rating/component';
-import VideoRating from './video-rating/component';
+import Rating from './rating/component';
 import { styles } from './styles';
 import logger from '/imports/startup/client/logger';
 import Users from '/imports/api/users';
@@ -100,8 +99,7 @@ class MeetingEnded extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      audioSelected: 0,
-      videoSelected: 0,
+      selected: 0,
     };
 
     const user = Users.findOne({ userId: Auth.userID });
@@ -109,8 +107,7 @@ class MeetingEnded extends React.PureComponent {
       this.localUserRole = user.role;
     }
 
-    this.setAudioSelectedStar = this.setAudioSelectedStar.bind(this);
-    this.setVideoSelectedStar = this.setVideoSelectedStar.bind(this);
+    this.setSelectedStar = this.setSelectedStar.bind(this);
     this.sendFeedback = this.sendFeedback.bind(this);
     this.shouldShowFeedback = getFromUserSettings('bbb_ask_for_feedback_on_logout', Meteor.settings.public.app.askForFeedbackOnLogout);
   }
@@ -119,25 +116,18 @@ class MeetingEnded extends React.PureComponent {
     Meteor.disconnect();
   }
 
-  setAudioSelectedStar(starNumber) {
+  setSelectedStar(starNumber) {
     this.setState({
-      audioSelected: starNumber,
-    });
-  }
-
-  setVideoSelectedStar(starNumber) {
-    this.setState({
-      videoSelected: starNumber,
+      selected: starNumber,
     });
   }
 
   sendFeedback() {
     const {
-      audioSelected,
-      videoSelected,
+      selected,
     } = this.state;
 
-    if (audioSelected <= 0 && videoSelected <= 0) {
+    if (selected <= 0) {
       logoutRouteHandler();
       return;
     }
@@ -145,8 +135,7 @@ class MeetingEnded extends React.PureComponent {
     const { fullname } = Auth.credentials;
 
     const message = {
-      audioRating: audioSelected,
-      videoRating: videoSelected,
+      rating: selected,
       userId: Auth.userID,
       userName: fullname,
       authToken: Auth.token,
@@ -181,11 +170,10 @@ class MeetingEnded extends React.PureComponent {
   render() {
     const { intl, code } = this.props;
     const {
-      audioSelected,
-      videoSelected,
+      selected,
     } = this.state;
 
-    const noRating = audioSelected <= 0 && videoSelected <= 0;
+    const noRating = selected <= 0;
 
     logger.info({ logCode: 'meeting_ended_code', extraInfo: { endedCode: code } }, 'Meeting ended component');
 
@@ -205,13 +193,9 @@ class MeetingEnded extends React.PureComponent {
             </div>
             {this.shouldShowFeedback ? (
               <div>
-                <AudioRating
+                <Rating
                   total="5"
-                  audioOnRate={this.setAudioSelectedStar}
-                />
-                <VideoRating
-                  total="5"
-                  videoOnRate={this.setVideoSelectedStar}
+                  onRate={this.setSelectedStar}
                 />
                 {!noRating ? (
                   <textarea

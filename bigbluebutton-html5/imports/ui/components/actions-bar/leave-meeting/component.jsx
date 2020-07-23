@@ -11,7 +11,7 @@ import DropdownListItem from '/imports/ui/components/dropdown/list/item/componen
 import DropdownListSeparator from '/imports/ui/components/dropdown/list/separator/component';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import cx from 'classnames';
-import { withModalMounter } from '../../modal/service';
+import { withModalMounter } from '/imports/ui/components/modal/service';
 import { makeCall } from '/imports/ui/services/api';
 
 import { styles } from '../styles';
@@ -103,7 +103,7 @@ class LeaveMeeting extends PureComponent {
 
   renderEndMeeting() {
     const {
-      intl, isMeteorConnected, amIModerator, isBreakoutRoom,
+      intl, isMeteorConnected, amIModerator, isBreakoutRoom, mountModal,
     } = this.props;
 
     const {

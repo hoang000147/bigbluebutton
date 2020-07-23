@@ -2,13 +2,13 @@ public:
   app:
     mobileFontSize: 16px
     desktopFontSize: 14px
-    audioChatNotification: false
+    audioChatNotification: true
     autoJoin: true
     listenOnlyMode: true
     forceListenOnly: false
     skipCheck: true
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
+    clientTitle: VCP
+    appName: VCP HTML5 Client
     bbbServerVersion: 2.2
     copyright: "©2020 BigBlueButton Inc."
     html5ClientBuild: HTML5_CLIENT_VERSION
@@ -16,7 +16,7 @@ public:
     lockOnJoin: true
     cdn: ""
     basename: "/html5client"
-    askForFeedbackOnLogout: false
+    askForFeedbackOnLogout: true
     allowUserLookup: false
     enableNetworkInformation: false
     enableLimitOfViewersInWebcam: false
@@ -28,9 +28,9 @@ public:
     defaultSettings:
       application:
         animations: true
-        chatAudioAlerts: false
+        chatAudioAlerts: true
         chatPushAlerts: false
-        userJoinAudioAlerts: false
+        userJoinAudioAlerts: true
         userJoinPushAlerts: false
         fallbackLocale: vi_VN
         overrideLocale: vi_VN
@@ -169,7 +169,7 @@ public:
     enabled: true
     url: https://hadtech3b.tk/pad
     config:
-      showLineNumbers: false
+      showLineNumbers: true
       showChat: false
       noColors: true
       showControls: true

@@ -175,7 +175,8 @@ WebApp.connectHandlers.use('/feedback', (req, res) => {
       authToken,
       userName: reqUserName,
       comment,
-      rating,
+      audioRating,
+      videoRating,
     } = body;
 
     check(meetingId, String);
@@ -183,7 +184,8 @@ WebApp.connectHandlers.use('/feedback', (req, res) => {
     check(authToken, String);
     check(reqUserName, String);
     check(comment, String);
-    check(rating, Number);
+    check(audioRating, Number);
+    check(videoRating, Number);
 
     const user = Users.findOne({
       meetingId,

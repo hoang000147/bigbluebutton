@@ -6,7 +6,7 @@ import { styles } from './styles';
 
 const intlMessages = defineMessages({
   legendTitle: {
-    id: 'app.meeting-ended.rating.legendLabel',
+    id: 'app.meeting-ended.rating.legendVideoLabel',
     description: 'label for star feedback legend',
   },
   starLabel: {
@@ -17,14 +17,14 @@ const intlMessages = defineMessages({
 
 const propTypes = {
   intl: intlShape.isRequired,
-  onRate: PropTypes.func.isRequired,
+  videoOnRate: PropTypes.func.isRequired,
   total: PropTypes.string.isRequired,
 };
 
-class Rating extends Component {
+class VideoRating extends Component {
   constructor(props) {
     super(props);
-    this.clickStar = this.clickStar.bind(this);
+    this.videoClickStar = this.videoClickStar.bind(this);
   }
 
   shouldComponentUpdate() {
@@ -32,9 +32,9 @@ class Rating extends Component {
     return false;
   }
 
-  clickStar(e) {
-    const { onRate } = this.props;
-    onRate(e);
+  videoClickStar(e) {
+    const { videoOnRate } = this.props;
+    videoOnRate(e);
   }
 
   renderStars(num) {
@@ -50,17 +50,17 @@ class Rating extends Component {
                 (
                   <input
                     type="radio"
-                    id={`${i + 1}star`}
-                    name="rating"
+                    id={`${i + 1}star-video`}
+                    name="video-rating"
                     value={i + 1}
-                    key={_.uniqueId('star-')}
-                    onChange={() => this.clickStar(i + 1)}
+                    key={_.uniqueId('star-video')}
+                    onChange={() => this.videoClickStar(i + 1)}
                   />
                 ),
                 (
                   <label
-                    htmlFor={`${i + 1}star`}
-                    key={_.uniqueId('star-')}
+                    htmlFor={`${i + 1}star-video`}
+                    key={_.uniqueId('star-video')}
                     aria-label={`${i + 1} ${intl.formatMessage(intlMessages.starLabel)}`}
                   />
                 ),
@@ -85,6 +85,6 @@ class Rating extends Component {
   }
 }
 
-export default injectIntl(Rating);
+export default injectIntl(VideoRating);
 
-Rating.propTypes = propTypes;
+VideoRating.propTypes = propTypes;
