@@ -190,6 +190,7 @@ class MeetingEnded extends React.PureComponent {
     logger.info({ logCode: 'meeting_ended_code', extraInfo: { endedCode: code } }, 'Meeting ended component');
 
     return (
+     
       <div className={styles.parent}>
         <div className={styles.modal}>
           <div className={styles.content}>

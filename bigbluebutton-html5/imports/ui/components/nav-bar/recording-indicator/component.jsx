@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, intlShape } from 'react-intl';
 import { styles } from './styles';
 
+import Button from '../../button/component';
+
 const intlMessages = defineMessages({
   notificationRecordingStart: {
     id: 'app.notification.recordingStart',
@@ -116,13 +118,6 @@ class RecordingIndicator extends PureComponent {
       : intlMessages.recordingIndicatorOff);
 
     const recordTitle = '';
-    /* if (!recording) {
-      recordTitle = time > 0
-        ? intl.formatMessage(intlMessages.resumeTitle)
-        : intl.formatMessage(intlMessages.startTitle);
-    } else {
-      recordTitle = intl.formatMessage(intlMessages.stopTitle);
-    } */
 
     const recordingToggle = () => {
       if (!micUser) {
@@ -132,96 +127,34 @@ class RecordingIndicator extends PureComponent {
       document.activeElement.blur();
     };
 
-    const recordingIndicatorIcon = (
-      <span className={styles.recordingIndicatorIcon}>
-        <svg xmlns="http://www.w3.org/2000/svg" height="100%" version="1" viewBox="0 0 20 20">
-          <g stroke="#FFF" fill="#FFF" strokeLinecap="square">
-            <circle
-              fill="none"
-              strokeWidth="1"
-              r="9"
-              cx="10"
-              cy="10"
-            />
-            <circle
-              stroke={recording ? '#F00' : '#FFF'}
-              fill={recording ? '#F00' : '#FFF'}
-              r="4"
-              cx="10"
-              cy="10"
-            />
-          </g>
-        </svg>
-      </span>
-    );
-
     const showButton = amIModerator && allowStartStopRecording;
 
     const recordMeetingButton = (
-      <div
-        aria-label={title}
+      <Button
         className={recording ? styles.recordingControlON : styles.recordingControlOFF}
         role="button"
-        tabIndex={0}
-        key="recording-toggle"
-        onClick={recordingToggle}
-        onKeyPress={recordingToggle}
-      >
-        {recordingIndicatorIcon}
-
-        <div className={styles.presentationTitle}>
-          {recording
-            ? (
-              <span className={styles.visuallyHidden}>
-                {`${intl.formatMessage(intlMessages.recordingAriaLabel)} ${humanizeSeconds(time)}`}
-              </span>
-            ) : null
-          }
-          {recording
-            ? <span aria-hidden>{humanizeSeconds(time)}</span> : <span>{recordTitle}</span>}
-        </div>
-      </div>
+        tabIndex={0}        
+        onClick={recordingToggle}        
+        aria-label={title}
+        label={recording ? `${humanizeSeconds(time)}` : title}
+        icon="record"
+        size="lg"
+        ghost
+        circle
+        hideLabel
+      />
     );
 
     const recordMeetingButtonWithTooltip = (
-      <Tooltip title={intl.formatMessage(intlMessages.stopTitle)}>
         {recordMeetingButton}
-      </Tooltip>
     );
 
     const recordingButton = recording ? recordMeetingButtonWithTooltip : recordMeetingButton;
 
     return (
-      <Fragment>
-        {/* record
-          ? <span className={styles.presentationTitleSeparator} aria-hidden>|</span>
-          : null */}
-        <div className={styles.recordingIndicator}>
-          {showButton
-            ? recordingButton
-            : null}
-
-          {showButton ? null : (
-            <Tooltip
-              title={`${intl.formatMessage(recording
-                ? intlMessages.notificationRecordingStart
-                : intlMessages.notificationRecordingStop)}`}
-            >
-              <div
-                aria-label={`${intl.formatMessage(recording
-                  ? intlMessages.notificationRecordingStart
-                  : intlMessages.notificationRecordingStop)}`}
-                className={styles.recordingStatusViewOnly}
-              >
-                {recordingIndicatorIcon}
-
-                {recording
-                  ? <div className={styles.presentationTitle}>{humanizeSeconds(time)}</div> : null}
-              </div>
-            </Tooltip>
-          )}
-        </div>
-      </Fragment>
+      <div>
+        {recordMeetingButton}
+      </div>
     );
   }
 }

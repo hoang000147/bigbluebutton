@@ -32,20 +32,29 @@
   }
 }
 
-.recordingControlOFF {
-  span {
-    box-shadow: none;
-    background-color: rgb(36,36,36) !important;
-  }
-  
-  i {
-    color: var(--color-white);
+.recordingControlON {
+  @extend %recordingControl;
+
+  padding: 5px;
+  background-color: var(--color-primary);
+  border: var(--border-size-large) solid var(--color-primary);
+
+  &:focus {
+    background-clip: padding-box;
+    border: var(--border-size-large) solid transparent;
   }
 }
 
-.recordingControlON {
-  i {
-    color: var(--color-danger);
+.recordingControlOFF {
+  @extend %recordingControl;
+
+  padding: 7px;
+  border: var(--border-size-small) solid var(--color-white);
+  
+  &:focus {
+    padding: 5px;
+    border: var(--border-size-large) solid var(--color-white);
+    box-shadow: none;
   }
 }
 

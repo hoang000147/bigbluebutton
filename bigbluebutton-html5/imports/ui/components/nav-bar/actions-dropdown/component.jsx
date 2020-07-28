@@ -66,7 +66,7 @@ const intlMessages = defineMessages({
     description: 'shared notes menu toggle button label',
   },
   sharedNotesDesc: {
-    id: 'app.actionsBar.actionsDropdown.sharedNotesDesc',
+    id: 'app.note.label',
     description: 'shared notes menu toggle button description',
   },
   takePresenter: {
