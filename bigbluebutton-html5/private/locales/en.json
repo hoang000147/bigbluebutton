@@ -629,7 +629,7 @@
     "app.whiteboard.toolbar.multiUserOff": "Turn multi-user whiteboard off",
     "app.whiteboard.toolbar.fontSize": "Font size list",
     "app.feedback.title": "You have logged out of the conference",
-    "app.feedback.subtitle": "We'd love to hear about your experience with HADtech (optional)",
+    "app.feedback.subtitle": "We'd love to hear about your experience with VCP (optional)",
     "app.feedback.textarea": "How can we make BigBlueButton better?",
     "app.feedback.sendFeedback": "Send Feedback",
     "app.feedback.sendFeedbackDesc": "Send a feedback and leave the meeting",
