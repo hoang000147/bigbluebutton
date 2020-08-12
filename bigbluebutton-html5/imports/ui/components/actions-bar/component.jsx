@@ -10,6 +10,9 @@ import getFromUserSettings from '/imports/ui/services/users-settings';
 import Button from '../button/component';
 import DesktopShare from './desktop-share/component';
 import ActionsDropdown from './actions-dropdown/component';
+
+// import ActionsDropdownContainer from './actions-dropdown/container';
+
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import LeaveMeetingContainer from './leave-meeting/container';
@@ -113,8 +116,6 @@ class ActionsBar extends PureComponent {
       toggleSwapLayout,
       handleTakePresenter,
       intl,
-      currentSlidHasContent,
-      parseCurrentSlideContent,
       isSharingVideo,
       screenShareEndAlert,
       stopExternalVideoShare,

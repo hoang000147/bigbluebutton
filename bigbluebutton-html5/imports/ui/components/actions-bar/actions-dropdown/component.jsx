@@ -16,6 +16,8 @@ import ExternalVideoModal from '/imports/ui/components/external-video-player/mod
 import cx from 'classnames';
 import NoteService from '/imports/ui/components/note/service';
 import { styles } from '../styles';
+import { makeCall } from '/imports/ui/services/api';
+
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -202,9 +204,11 @@ class ActionsDropdown extends PureComponent {
   makePresentationItems() {
     const {
       presentations,
-      setPresentation,
+      // setPresentation,
       podIds,
     } = this.props;
+
+    const setPresentation = (presentationId, podId) => makeCall('setPresentation', presentationId, podId);
 
     if (!podIds || podIds.length < 1) return [];
 

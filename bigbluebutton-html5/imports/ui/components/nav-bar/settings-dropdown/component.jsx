@@ -204,7 +204,7 @@ class SettingsDropdown extends PureComponent {
         label={intl.formatMessage(intlMessages.aboutLabel)}
         description={intl.formatMessage(intlMessages.aboutDesc)}
         onClick={() => mountModal(<AboutContainer />)}
-      />),
+      />), */
       !helpButton ? null
         : (
           <DropdownListItem
@@ -215,7 +215,7 @@ class SettingsDropdown extends PureComponent {
             description={intl.formatMessage(intlMessages.helpDesc)}
             onClick={() => window.open(`${helpLink}`)}
           />
-        ), */
+        ),
       (<DropdownListItem
         key="list-item-shortcuts"
         icon="shortcuts"
